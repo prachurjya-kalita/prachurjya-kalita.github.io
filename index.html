@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prachurjya Kalita</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #0f1a13;
+  color: #eaeaea;
+  line-height: 1.8;
+  padding-top: 20px;
+}
+
+/* ===== PREMIUM NAVBAR (DESKTOP) ===== */
+nav {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 26px;
+  border-radius: 50px;
+  background: rgba(15, 26, 19, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+  z-index: 999;
+  text-align: center;
+}
+
+/* NAV LINKS */
+nav a {
+  margin: 0 10px;
+  color: #aed581;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.85;
+  transition: 0.25s ease;
+}
+
+nav a:hover {
+  opacity: 1;
+  color: #ffffff;
+}
+
+/* ===== MOBILE NAVBAR FIX ===== */
+@media (max-width: 768px) {
+
+  nav {
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    border-radius: 0;
+    padding: 14px 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 0 12px;
+    font-size: 13px;
+  }
+}
+
+/* ===== HERO SECTION ===== */
+header {
+  position: relative;
+  height: 100vh;
+  margin-top: -20px;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+    url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ===== BIRDS ANIMATION ===== */
+.bird {
+  position: absolute;
+  top: 30%;
+  width: 30px;
+  height: 15px;
+  border-top: 2px solid rgba(255,255,255,0.7);
+  border-radius: 50%;
+  animation: fly 22s linear infinite;
+}
+
+.bird::after {
+  content: '';
+  position: absolute;
+  right: -15px;
+  width: 30px;
+  height: 15px;
+  border-top: 2px solid rgba(255,255,255,0.7);
+  border-radius: 50%;
+}
+
+.bird:nth-child(1) { top: 25%; animation-duration: 20s; }
+.bird:nth-child(2) { top: 35%; animation-duration: 26s; }
+.bird:nth-child(3) { top: 45%; animation-duration: 32s; }
+
+@keyframes fly {
+  from { left: -20%; }
+  to { left: 120%; }
+}
+
+/* ===== HERO CONTENT ===== */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.profile-pic {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.8);
+  margin-bottom: 20px;
+  animation: float 4s ease-in-out infinite;
+}
+
+header h1 {
+  font-size: 38px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 16px;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+}
+
+/* ===== MAIN CONTENT ===== */
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+  background: linear-gradient(to bottom, #0f1a13, #16261c);
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 32px;
+  margin-bottom: 40px;
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+}
+
+h2 {
+  color: #9ccc65;
+  font-weight: 500;
+  margin-top: 0;
+}
+
+ul { padding-left: 22px; }
+li { margin-bottom: 8px; }
+
+a {
+  color: #aed581;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* CV BUTTON */
+.cv-button {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #558b2f, #33691e);
+  color: #fff;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ===== GALLERY STYLE ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* FOOTER */
+footer {
+  background: #0c140f;
+  color: #9ccc65;
+  text-align: center;
+  padding: 22px;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#field">Fieldwork</a>
+  <a href="#maps">Maps</a>
+  <a href="#certificates">Certificates</a>
+  <a href="#education">Education</a>
+  <a href="#contact">Contact</a>
+  <a href="cv.pdf" target="_blank">CV</a>
+</nav>
+
+<header id="home">
+  <div class="bird"></div>
+  <div class="bird"></div>
+  <div class="bird"></div>
+
+  <div class="hero-content">
+    <img src="profile.jpg" alt="Prachurjya Kalita" class="profile-pic">
+    <h1>Prachurjya Kalita</h1>
+    <p>Geography Student · Wildlife Research Aspirant · GIS & Spatial Analysis</p>
+  </div>
+</header>
+
+<section>
+
+<!-- ORIGINAL ABOUT -->
+<div class="card" id="about">
+<h2>About Me</h2>
+<p>
+I am an undergraduate Geography student with a deep academic interest in wildlife research,
+forest landscapes, and the spatial dynamics of natural environments.
+I am particularly fascinated by how wildlife habitats, protected areas,
+and human activities interact across space and time.
+</p>
+
+<p>
+I am actively learning and practicing <strong>Geographic Information Systems (GIS)</strong>,
+with a focus on <strong>QGIS</strong> and <strong>ArcGIS</strong>.
+My work involves land use and land cover analysis, basic habitat mapping,
+and spatial interpretation using satellite imagery and field-based data.
+</p>
+
+<p>
+My long-term interest lies in applying GIS tools to wildlife conservation,
+habitat assessment, and environmental research,
+especially within forested and protected landscapes.
+</p>
+</div>
+
+<!-- ORIGINAL LOOKING FOR -->
+<div class="card">
+<h2>What I’m Looking For</h2>
+<p>
+I am seeking internships, learning opportunities, and field-based projects related to
+<strong>wildlife research, conservation studies, GIS applications, and environmental analysis</strong>.
+</p>
+
+<p>
+I am especially interested in projects involving forest ecosystems, protected areas,
+wildlife habitats, land use change,
+and the application of <strong>QGIS and ArcGIS</strong>
+for spatial mapping and research support.
+</p>
+</div>
+
+<!-- ORIGINAL SKILLS -->
+<div class="card" id="skills">
+<h2>Interests & Skills</h2>
+<ul>
+<li>Wildlife Research & Conservation Studies</li>
+<li>GIS Applications (QGIS & ArcGIS – Learning & Practice)</li>
+<li>Cartography & Map Making</li>
+<li>Remote Sensing (Basic)</li>
+<li>Field Survey & Habitat Studies</li>
+<li>Wildlife & Landscape Photography</li>
+</ul>
+</div>
+
+<!-- FIELD EXPERIENCE -->
+<div class="card" id="field">
+<h2>Field Experience & Project Work</h2>
+<ul>
+<li>
+Gained experience in an International project on <strong>Tiger Monitoring and Population Estimation</strong>
+using <strong>acoustic measures</strong> at
+<strong>Orang National Park</strong> and
+<strong>Kaziranga National Park</strong>.
+</li>
+<li>
+Funded by the <strong>Rufford Foundation (UK)</strong> and the
+<strong>University of Wisconsin–Madison (USA)</strong>.
+</li>
+<li>Participated in ecological and science-based field surveys</li>
+<li>Assisted in camera trapping support for wildlife monitoring</li>
+<li>Supported Installation of acoustic monitoring devices</li>
+<li>Worked on field-based data collection using KoBo Toolbox questionnaires</li>
+</ul>
+</div>
+
+<!-- FIELDWORK PHOTOS -->
+<div class="card">
+<h2>Fieldwork Photos</h2>
+<div class="gallery">
+  <a href="field1.jpg" target="_blank"><img src="field1.jpg"></a>
+  <a href="field2.jpg" target="_blank"><img src="field2.jpg"></a>
+  <a href="field3.jpg" target="_blank"><img src="field3.jpg"></a>
+  <a href="field4.jpg" target="_blank"><img src="field4.jpg"></a>
+  <a href="field5.jpg" target="_blank"><img src="field5.jpg"></a>
+  <a href="field6.jpg" target="_blank"><img src="field6.jpg"></a>
+  <a href="field7.jpg" target="_blank"><img src="field7.jpg"></a>
+  <a href="field8.jpg" target="_blank"><img src="field8.jpg"></a>
+</div>
+</div>
+
+<!-- MAPS -->
+<div class="card" id="maps">
+<h2>Maps & GIS Work</h2>
+<div class="gallery">
+  <a href="map1.jpg" target="_blank"><img src="map1.jpg"></a>
+  <a href="map2.jpg" target="_blank"><img src="map2.jpg"></a>
+  <a href="map3.jpg" target="_blank"><img src="map3.jpg"></a>
+  <a href="map4.jpg" target="_blank"><img src="map4.jpg"></a>
+  <a href="map5.jpg" target="_blank"><img src="map5.jpg"></a>
+</div>
+</div>
+
+<!-- CERTIFICATES -->
+<div class="card" id="certificates">
+<h2>Certificates</h2>
+<div class="gallery">
+  <a href="cert1.jpg" target="_blank"><img src="cert1.jpg"></a>
+  <a href="cert2.jpg" target="_blank"><img src="cert2.jpg"></a>
+  <a href="cert3.jpg" target="_blank"><img src="cert3.jpg"></a>
+  <a href="cert4.jpg" target="_blank"><img src="cert4.jpg"></a>
+</div>
+</div>
+
+<!-- NORMAL PHOTOS -->
+<div class="card" id="photos">
+<h2>Normal Photography</h2>
+<div class="gallery">
+  <a href="photo1.jpg" target="_blank"><img src="photo1.jpg"></a>
+  <a href="photo2.jpg" target="_blank"><img src="photo2.jpg"></a>
+  <a href="photo3.jpg" target="_blank"><img src="photo3.jpg"></a>
+  <a href="photo4.jpg" target="_blank"><img src="photo4.jpg"></a>
+  <a href="photo5.jpg" target="_blank"><img src="photo5.jpg"></a>
+</div>
+</div>
+
+<!-- ORIGINAL EDUCATION -->
+<div class="card" id="education">
+<h2>Education</h2>
+<p><strong>B.A. (Geography)</strong><br>
+Mangaldai College, Gauhati University<br>
+2023 – Present | 6th Semester</p>
+
+<p><strong>Higher Secondary (AHSEC)</strong><br>
+2023 | 82%</p>
+
+<p><strong>HSLC (SEBA)</strong><br>
+2021 | 93.1%</p>
+</div>
+
+<!-- ORIGINAL CONTACT -->
+<div class="card" id="contact">
+<h2>Contact</h2>
+<p>
+Email: <a href="mailto:polkalita2004@gmail.com">polkalita2004@gmail.com</a><br>
+Instagram: <a href="https://instagram.com/prachuuz_" target="_blank">@prachuuz_</a>
+</p>
+
+<a href="cv.pdf" target="_blank" class="cv-button">Download My CV</a>
+</div>
+
+</section>
+
+<footer>
+© 2026 Prachurjya Kalita
+</footer>
+
+</body>
+</html>
