@@ -2,14 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Prachurjya Kalita</title>
+<title>Prachurjya Kalita | Wildlife & GIS Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Prachurjya Kalita – Geography student, wildlife researcher, and GIS analyst. Field experience in tiger monitoring at Orang & Kaziranga.">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  margin: 0;
   font-family: 'Inter', sans-serif;
   background-color: #0f1a13;
   color: #eaeaea;
@@ -33,7 +41,12 @@ nav {
   text-align: center;
 }
 
-/* NAV LINKS */
+nav.scrolled {
+  padding: 8px 20px;
+  background: rgba(15, 26, 19, 0.95);
+  top: 10px;
+}
+
 nav a {
   margin: 0 10px;
   color: #aed581;
@@ -41,6 +54,19 @@ nav a {
   font-weight: 500;
   opacity: 0.85;
   transition: 0.25s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
 }
 
 nav a:hover {
@@ -48,7 +74,11 @@ nav a:hover {
   color: #ffffff;
 }
 
-/* ===== MOBILE NAVBAR FIX ===== */
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ===== MOBILE NAVBAR ===== */
 @media (max-width: 768px) {
   nav {
     top: 0;
@@ -68,7 +98,7 @@ nav a:hover {
   }
 }
 
-/* ===== HERO SECTION ===== */
+/* ===== HERO SECTION (Original background) ===== */
 header {
   position: relative;
   height: 100vh;
@@ -86,7 +116,7 @@ header {
   text-align: center;
 }
 
-/* ===== BIRDS ANIMATION ===== */
+/* ===== BIRDS ANIMATION (Original) ===== */
 .bird {
   position: absolute;
   top: 30%;
@@ -107,19 +137,24 @@ header {
   border-radius: 50%;
 }
 
-.bird:nth-child(1) { top: 25%; animation-duration: 20s; }
-.bird:nth-child(2) { top: 35%; animation-duration: 26s; }
-.bird:nth-child(3) { top: 45%; animation-duration: 32s; }
+.bird:nth-child(1) { top: 25%; animation-duration: 20s; animation-delay: 0s; }
+.bird:nth-child(2) { top: 35%; animation-duration: 26s; animation-delay: 2s; }
+.bird:nth-child(3) { top: 45%; animation-duration: 32s; animation-delay: 5s; }
 
 @keyframes fly {
-  from { left: -20%; }
-  to { left: 120%; }
+  from { left: -20%; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  to { left: 120%; opacity: 0; }
 }
 
 /* ===== HERO CONTENT ===== */
 .hero-content {
   position: relative;
   z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+  animation: fadeInUp 1s ease;
 }
 
 .profile-pic {
@@ -130,18 +165,40 @@ header {
   border: 4px solid rgba(255,255,255,0.8);
   margin-bottom: 20px;
   animation: float 4s ease-in-out infinite;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 header h1 {
-  font-size: 38px;
-  font-weight: 600;
+  font-size: 48px;
+  font-weight: 700;
   margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  background: linear-gradient(to right, #ffffff, #aed581);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 header p {
-  font-size: 16px;
-  opacity: 0.9;
+  font-size: 18px;
+  opacity: 0.95;
   letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -152,78 +209,288 @@ section {
   background: linear-gradient(to bottom, #0f1a13, #16261c);
 }
 
-/* ===== CARDS ===== */
+/* ===== PREMIUM CARDS (Next wale jaisa) ===== */
 .card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 32px;
+  background: rgba(25, 40, 30, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(160, 210, 120, 0.15);
+  border-radius: 30px;
+  padding: 45px 40px;
   margin-bottom: 40px;
-  border-radius: 14px;
-  backdrop-filter: blur(6px);
+  box-shadow: 0 30px 50px -20px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(160, 220, 120, 0.3);
+  box-shadow: 0 40px 60px -15px #1a3a1a;
+  transform: translateY(-5px);
 }
 
 h2 {
-  color: #9ccc65;
-  font-weight: 500;
-  margin-top: 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #c8e6a5;
+  border-left: 6px solid #8bc34a;
+  padding-left: 22px;
+  letter-spacing: -0.02em;
 }
 
-ul { padding-left: 22px; }
-li { margin-bottom: 8px; }
-
-a {
+h2 i {
   color: #aed581;
-  text-decoration: none;
+  margin-right: 12px;
+  font-size: 2rem;
 }
-a:hover { text-decoration: underline; }
 
-/* CV BUTTON */
-.cv-button {
-  display: inline-block;
-  margin-top: 18px;
-  padding: 14px 30px;
-  background: linear-gradient(135deg, #558b2f, #33691e);
-  color: #fff;
+p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #deecd5;
+  margin-bottom: 20px;
+}
+
+/* ===== SKILL CHIPS ===== */
+.skill-chip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.skill-chip span {
+  background: rgba(70, 120, 60, 0.3);
+  border: 1px solid #6a9c4b;
+  padding: 8px 22px;
   border-radius: 40px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #d4efc0;
+  backdrop-filter: blur(4px);
+  transition: 0.2s;
 }
 
-/* ===== GALLERY STYLE ===== */
-.gallery {
+.skill-chip span:hover {
+  background: rgba(90, 150, 70, 0.4);
+  border-color: #aed581;
+  transform: scale(1.02);
+}
+
+/* ===== LISTS ===== */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 16px;
+  padding-left: 30px;
+  position: relative;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #deecd5;
+}
+
+li::before {
+  content: "🌿";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2rem;
+  color: #aed581;
+}
+
+/* ===== GALLERY GRID ===== */
+.gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  margin-top: 18px;
+  gap: 20px;
+  margin-top: 30px;
 }
 
-.gallery img {
+.gallery-item {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  border: 2px solid rgba(160, 210, 120, 0.2);
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 25px -8px black;
+}
+
+.gallery-item img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: 0.3s ease;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
 }
 
-.gallery img:hover {
-  transform: scale(1.03);
+.gallery-item:hover {
+  border-color: #aed581;
+  transform: scale(1.02);
+  box-shadow: 0 25px 35px -8px #1e3b1e;
 }
 
-/* FOOTER */
+.gallery-item:hover img {
+  transform: scale(1.07);
+}
+
+/* ===== EDUCATION ITEMS ===== */
+.edu-item {
+  background: rgba(255,255,255,0.03);
+  padding: 22px 28px;
+  border-radius: 24px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(140,200,100,0.1);
+  transition: 0.2s;
+}
+
+.edu-item:hover {
+  border-color: rgba(160,220,120,0.3);
+  background: rgba(255,255,255,0.05);
+}
+
+.edu-item strong {
+  color: #c2e689;
+  font-size: 1.3rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.edu-item p {
+  margin: 5px 0 0;
+  color: #bcd0b0;
+}
+
+/* ===== CONTACT SECTION ===== */
+.contact-block {
+  background: linear-gradient(135deg, #1a2f1f, #142114);
+  border-radius: 40px;
+  padding: 50px 40px;
+  text-align: center;
+  border: 1px solid #4f6d3e;
+  box-shadow: 0 30px 50px -20px black;
+}
+
+.social-links {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 35px 0 25px;
+}
+
+.social-links a {
+  color: #deecd5;
+  font-size: 1.3rem;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(160,220,120,0.3);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-links a i {
+  font-size: 1.5rem;
+  color: #aed581;
+}
+
+.social-links a:hover {
+  background: rgba(70, 130, 70, 0.4);
+  border-color: #aed581;
+  transform: translateY(-3px);
+  color: white;
+}
+
+/* ===== CV BUTTON ===== */
+.cv-btn {
+  background: linear-gradient(135deg, #3b6b2b, #2a5220);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 16px 50px;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 20px 30px -8px #1f3f17;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 25px;
+  border: 1px solid #aae079;
+}
+
+.cv-btn:hover {
+  background: linear-gradient(135deg, #4a8035, #33691e);
+  transform: translateY(-5px);
+  box-shadow: 0 28px 35px -6px #2f5924;
+}
+
+.cv-btn i {
+  margin-right: 10px;
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lightbox-modal.active {
+  display: flex;
+}
+
+.lightbox-modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 20px;
+  border: 3px solid #aed581;
+  box-shadow: 0 30px 60px black;
+}
+
+/* ===== FOOTER ===== */
 footer {
+  text-align: center;
+  padding: 30px 20px;
   background: #0c140f;
   color: #9ccc65;
-  text-align: center;
-  padding: 22px;
-  font-size: 14px;
+  border-top: 1px solid #2f452a;
+  font-size: 1rem;
 }
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #1e2b23; }
+::-webkit-scrollbar-thumb { background: #6a9c4b; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #8bc34a; }
 </style>
 </head>
-
 <body>
 
-<nav>
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox-modal" id="lightboxModal">
+  <img id="modalImage" src="" alt="Enlarged view">
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
   <a href="#home">Home</a>
   <a href="#about">About</a>
   <a href="#skills">Skills</a>
@@ -235,153 +502,194 @@ footer {
   <a href="cv.pdf" target="_blank">CV</a>
 </nav>
 
+<!-- HERO SECTION (Original background + birds) -->
 <header id="home">
   <div class="bird"></div>
   <div class="bird"></div>
   <div class="bird"></div>
 
   <div class="hero-content">
-    <img src="profile.jpg" alt="Prachurjya Kalita" class="profile-pic">
+    <img src="profile.jpg" alt="Prachurjya Kalita" class="profile-pic" onerror="this.src='https://via.placeholder.com/400?text=Profile'">
     <h1>Prachurjya Kalita</h1>
     <p>Geography Student · Wildlife Research Aspirant · GIS & Spatial Analysis</p>
   </div>
 </header>
 
+<!-- MAIN CONTENT -->
 <section>
 
+<!-- ABOUT -->
 <div class="card" id="about">
-<h2>About Me</h2>
-<p>
-I am an undergraduate Geography student with a deep academic interest in wildlife research,
-forest landscapes, and the spatial dynamics of natural environments.
-I am particularly fascinated by how wildlife habitats, protected areas,
-and human activities interact across space and time.
-</p>
-
-<p>
-I am actively learning and practicing <strong>Geographic Information Systems (GIS)</strong>,
-with a focus on <strong>QGIS</strong> and <strong>ArcGIS</strong>.
-My work involves land use and land cover analysis, basic habitat mapping,
-and spatial interpretation using satellite imagery and field-based data.
-</p>
-
-<p>
-My long-term interest lies in applying GIS tools to wildlife conservation,
-habitat assessment, and environmental research,
-especially within forested and protected landscapes.
-</p>
+  <h2><i class="fas fa-leaf"></i> About Me</h2>
+  <p>I am an undergraduate Geography student with a deep academic interest in wildlife research, forest landscapes, and the spatial dynamics of natural environments. I am particularly fascinated by how wildlife habitats, protected areas, and human activities interact across space and time.</p>
+  <p>I am actively learning and practicing <strong>Geographic Information Systems (GIS)</strong>, with a focus on <strong>QGIS</strong> and <strong>ArcGIS</strong>. My work involves land use and land cover analysis, basic habitat mapping, and spatial interpretation using satellite imagery and field-based data.</p>
+  <p>My long-term interest lies in applying GIS tools to wildlife conservation, habitat assessment, and environmental research, especially within forested and protected landscapes.</p>
 </div>
 
+<!-- WHAT I'M LOOKING FOR -->
 <div class="card">
-<h2>What I’m Looking For</h2>
-<p>
-I am seeking internships, learning opportunities, and field-based projects related to
-<strong>wildlife research, conservation studies, GIS applications, and environmental analysis</strong>.
-</p>
-
-<p>
-I am especially interested in projects involving forest ecosystems, protected areas,
-wildlife habitats, land use change,
-and the application of <strong>QGIS and ArcGIS</strong>
-for spatial mapping and research support.
-</p>
+  <h2><i class="fas fa-binoculars"></i> What I'm Looking For</h2>
+  <p>I am seeking internships, learning opportunities, and field-based projects related to <strong>wildlife research, conservation studies, GIS applications, and environmental analysis</strong>.</p>
+  <p>I am especially interested in projects involving forest ecosystems, protected areas, wildlife habitats, land use change, and the application of <strong>QGIS and ArcGIS</strong> for spatial mapping and research support.</p>
 </div>
 
+<!-- SKILLS -->
 <div class="card" id="skills">
-<h2>Interests & Skills</h2>
-<ul>
-<li>Wildlife Research & Conservation Studies</li>
-<li>GIS Applications (QGIS & ArcGIS – Learning & Practice)</li>
-<li>Cartography & Map Making</li>
-<li>Remote Sensing (Basic)</li>
-<li>Field Survey & Habitat Studies</li>
-<li>Wildlife & Landscape Photography</li>
-</ul>
+  <h2><i class="fas fa-cog"></i> Interests & Skills</h2>
+  <div class="skill-chip">
+    <span>Wildlife Research</span>
+    <span>Conservation Studies</span>
+    <span>QGIS</span>
+    <span>ArcGIS</span>
+    <span>Cartography</span>
+    <span>Remote Sensing</span>
+    <span>Field Survey</span>
+    <span>Habitat Studies</span>
+    <span>Wildlife Photography</span>
+  </div>
 </div>
 
+<!-- FIELD EXPERIENCE -->
 <div class="card" id="field">
-<h2>Field Experience & Project Work</h2>
-<ul>
-<li>
-Gained experience in an International project on <strong>Tiger Monitoring and Population Estimation</strong>
-using <strong>acoustic measures</strong> at
-<strong>Orang National Park</strong> and
-<strong>Kaziranga National Park</strong>.
-</li>
-<li>
-Funded by the <strong>Rufford Foundation (UK)</strong> and the
-<strong>University of Wisconsin–Madison (USA)</strong>.
-</li>
-<li>Participated in ecological and science-based field surveys</li>
-<li>Assisted in camera trapping support for wildlife monitoring</li>
-<li>Supported Installation of acoustic monitoring devices</li>
-<li>Worked on field-based data collection using KoBo Toolbox questionnaires</li>
-</ul>
+  <h2><i class="fas fa-tree"></i> Field Experience & Project Work</h2>
+  <ul>
+    <li>Gained experience in an International project on <strong>Tiger Monitoring and Population Estimation</strong> using <strong>acoustic measures</strong> at <strong>Orang National Park</strong> and <strong>Kaziranga National Park</strong>.</li>
+    <li>Funded by the <strong>Rufford Foundation (UK)</strong> and the <strong>University of Wisconsin–Madison (USA)</strong>.</li>
+    <li>Participated in ecological and science-based field surveys</li>
+    <li>Assisted in camera trapping support for wildlife monitoring</li>
+    <li>Supported Installation of acoustic monitoring devices</li>
+    <li>Worked on field-based data collection using KoBo Toolbox questionnaires</li>
+  </ul>
 </div>
 
+<!-- FIELD PHOTOS -->
 <div class="card">
-<h2>Fieldwork Photos</h2>
-<div class="gallery">
-  <a href="field1.jpg" target="_blank"><img src="field1.jpg"></a>
-  <a href="field2.jpg" target="_blank"><img src="field2.jpg"></a>
-  <a href="field3.jpg" target="_blank"><img src="field3.jpg"></a>
-  <a href="field4.jpg" target="_blank"><img src="field4.jpg"></a>
-  <a href="field5.jpg" target="_blank"><img src="field5.jpg"></a>
-  <a href="field6.jpg" target="_blank"><img src="field6.jpg"></a>
-  <a href="field7.jpg" target="_blank"><img src="field7.jpg"></a>
-  <a href="field8.jpg" target="_blank"><img src="field8.jpg"></a>
-</div>
+  <h2><i class="fas fa-camera-retro"></i> Fieldwork Photos</h2>
+  <div class="gallery-grid">
+    <a class="gallery-item" href="field1.jpg"><img src="field1.jpg" alt="Fieldwork" onerror="this.src='https://via.placeholder.com/400?text=Field+1'"></a>
+    <a class="gallery-item" href="field2.jpg"><img src="field2.jpg" alt="Fieldwork" onerror="this.src='https://via.placeholder.com/400?text=Field+2'"></a>
+    <a class="gallery-item" href="field3.jpg"><img src="field3.jpg" alt="Fieldwork" onerror="this.src='https://via.placeholder.com/400?text=Field+3'"></a>
+    <a class="gallery-item" href="field4.jpg"><img src="field4.jpg" alt="Fieldwork" onerror="this.src='https://via.placeholder.com/400?text=Field+4'"></a>
+    <a class="gallery-item" href="field5.jpg"><img src="field5.jpg" alt="Fieldwork" onerror="this.src='https://via.placeholder.com/400?text=Field+5'"></a>
+    <a class="gallery-item" href="field6.jpg"><img src="field6.jpg" alt="Fieldwork" onerror="this.src='https://via.placeholder.com/400?text=Field+6'"></a>
+    <a class="gallery-item" href="field7.jpg"><img src="field7.jpg" alt="Fieldwork" onerror="this.src='https://via.placeholder.com/400?text=Field+7'"></a>
+    <a class="gallery-item" href="field8.jpg"><img src="field8.jpg" alt="Fieldwork" onerror="this.src='https://via.placeholder.com/400?text=Field+8'"></a>
+  </div>
 </div>
 
+<!-- MAPS -->
 <div class="card" id="maps">
-<h2>Maps & GIS Work</h2>
-<div class="gallery">
-  <a href="map1.jpg" target="_blank"><img src="map1.jpg"></a>
-  <a href="map2.jpg" target="_blank"><img src="map2.jpg"></a>
-  <a href="map3.jpg" target="_blank"><img src="map3.jpg"></a>
-  <a href="map4.jpg" target="_blank"><img src="map4.jpg"></a>
-  <a href="map5.jpg" target="_blank"><img src="map5.jpg"></a>
-</div>
+  <h2><i class="fas fa-map"></i> Maps & GIS Work</h2>
+  <div class="gallery-grid">
+    <a class="gallery-item" href="map1.jpg"><img src="map1.jpg" alt="GIS Map" onerror="this.src='https://via.placeholder.com/400?text=Map+1'"></a>
+    <a class="gallery-item" href="map2.jpg"><img src="map2.jpg" alt="GIS Map" onerror="this.src='https://via.placeholder.com/400?text=Map+2'"></a>
+    <a class="gallery-item" href="map3.jpg"><img src="map3.jpg" alt="GIS Map" onerror="this.src='https://via.placeholder.com/400?text=Map+3'"></a>
+    <a class="gallery-item" href="map4.jpg"><img src="map4.jpg" alt="GIS Map" onerror="this.src='https://via.placeholder.com/400?text=Map+4'"></a>
+    <a class="gallery-item" href="map5.jpg"><img src="map5.jpg" alt="GIS Map" onerror="this.src='https://via.placeholder.com/400?text=Map+5'"></a>
+  </div>
 </div>
 
+<!-- CERTIFICATES -->
 <div class="card" id="certificates">
-<h2>Certificates</h2>
-<div class="gallery">
-  <a href="cert1.jpg" target="_blank"><img src="cert1.jpg"></a>
-  <a href="cert2.jpg" target="_blank"><img src="cert2.jpg"></a>
-  <a href="cert3.jpg" target="_blank"><img src="cert3.jpg"></a>
-  <a href="cert4.jpg" target="_blank"><img src="cert4.jpg"></a>
-</div>
+  <h2><i class="fas fa-certificate"></i> Certificates</h2>
+  <div class="gallery-grid">
+    <a class="gallery-item" href="cert1.jpg"><img src="cert1.jpg" alt="Certificate" onerror="this.src='https://via.placeholder.com/400?text=Cert+1'"></a>
+    <a class="gallery-item" href="cert2.jpg"><img src="cert2.jpg" alt="Certificate" onerror="this.src='https://via.placeholder.com/400?text=Cert+2'"></a>
+    <a class="gallery-item" href="cert3.jpg"><img src="cert3.jpg" alt="Certificate" onerror="this.src='https://via.placeholder.com/400?text=Cert+3'"></a>
+    <a class="gallery-item" href="cert4.jpg"><img src="cert4.jpg" alt="Certificate" onerror="this.src='https://via.placeholder.com/400?text=Cert+4'"></a>
+  </div>
 </div>
 
+<!-- EDUCATION -->
 <div class="card" id="education">
-<h2>Education</h2>
-<p><strong>B.A. (Geography)</strong><br>
-Mangaldai College, Gauhati University<br>
-2023 – Present | 6th Semester</p>
-
-<p><strong>Higher Secondary (AHSEC)</strong><br>
-2023 | 82%</p>
-
-<p><strong>HSLC (SEBA)</strong><br>
-2021 | 93.1%</p>
+  <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+  <div class="edu-item">
+    <strong>B.A. (Geography)</strong>
+    <p>Mangaldai College, Gauhati University • 2023 – Present | 6th Semester</p>
+  </div>
+  <div class="edu-item">
+    <strong>Higher Secondary (AHSEC)</strong>
+    <p>2023 | 82%</p>
+  </div>
+  <div class="edu-item">
+    <strong>HSLC (SEBA)</strong>
+    <p>2021 | 93.1%</p>
+  </div>
 </div>
 
+<!-- CONTACT + SOCIAL MEDIA -->
 <div class="card" id="contact">
-<h2>Contact</h2>
-<p>
-Email: <a href="mailto:polkalita2004@gmail.com">polkalita2004@gmail.com</a><br>
-Instagram: <a href="https://instagram.com/prachuuz_" target="_blank">@prachuuz_</a>
-</p>
-
-<a href="cv.pdf" target="_blank" class="cv-button">Download My CV</a>
+  <div class="contact-block">
+    <h2 style="border-left: none; text-align: center; color: #e2ffc0;"><i class="fas fa-envelope"></i> Connect With Me</h2>
+    
+    <div class="social-links">
+      <a href="mailto:polkalita2004@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      <a href="https://www.linkedin.com/in/prachurjya-kalita-279bb3355" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a href="https://instagram.com/prachuuz_" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://x.com/Prachux_" target="_blank"><i class="fab fa-x-twitter"></i> X (Twitter)</a>
+    </div>
+    
+    <a href="cv.pdf" target="_blank" class="cv-btn"><i class="fas fa-download"></i> Download CV (PDF)</a>
+  </div>
 </div>
 
 </section>
 
+<!-- FOOTER -->
 <footer>
-© 2026 Prachurjya Kalita
+  © 2026 Prachurjya Kalita — Wildlife & GIS Enthusiast
 </footer>
+
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll', function() {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Lightbox functionality
+const lightbox = document.getElementById('lightboxModal');
+const lightboxImg = document.getElementById('modalImage');
+
+document.querySelectorAll('.gallery-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const imgSrc = item.getAttribute('href');
+    if (imgSrc) {
+      lightboxImg.src = imgSrc;
+      lightbox.classList.add('active');
+    }
+  });
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    lightbox.classList.remove('active');
+  }
+});
+</script>
 
 </body>
 </html>
