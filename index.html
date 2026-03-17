@@ -446,6 +446,11 @@ li::before {
   pointer-events: none;
 }
 
+#maps .gallery-item img {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
 .gallery-item:active {
   transform: scale(0.98);
 }
@@ -606,6 +611,10 @@ li::before {
   height: 100%;
   text-align: center;
   line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
 }
 
 .social-links a i {
@@ -705,6 +714,10 @@ footer {
   .social-links {
     grid-template-columns: 1fr;
   }
+  .social-links a {
+    font-size: 0.95rem;
+    padding: 12px 14px;
+  }
 }
 
 @media (min-width: 1001px) {
@@ -766,7 +779,7 @@ footer {
   <div class="hero-content">
     <img src="profile.jpg" alt="Portrait of Prachurjya Kalita" class="profile-pic" loading="eager" fetchpriority="high" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Profile'">
     <h1>Prachurjya Kalita</h1>
-    <p>Geography Student Â· Wildlife Research Aspirant Â· GIS & Spatial Analysis</p>
+    <p>Geography Student &middot; Wildlife Research Aspirant &middot; GIS & Spatial Analysis</p>
   </div>
 </header>
 
@@ -807,7 +820,7 @@ footer {
     <h2><i class="fas fa-tree"></i> Field Experience & Project Work</h2>
     <ul>
       <li>Gained experience in an International project on <strong>Tiger Monitoring and Population Estimation</strong> using <strong>acoustic measures</strong> at <strong>Orang National Park-Eastern Assam</strong> and <strong>Kaziranga National Park-Karbi Anglong Landscape</strong>.</li>
-      <li>Funded by the <strong>Rufford Foundation (UK)</strong> and the <strong>University of Wisconsinâ€“Madison (USA)</strong>.</li>
+      <li>Funded by the <strong>Rufford Foundation (UK)</strong> and the <strong>University of Wisconsin&ndash;Madison (USA)</strong>.</li>
       <li>Participated in ecological and science-based field surveys.</li>
       <li>Assisted in camera trapping support for wildlife monitoring.</li>
       <li>Supported Installation of acoustic monitoring devices.</li>
@@ -858,7 +871,7 @@ footer {
     <h2><i class="fas fa-graduation-cap"></i> Education</h2>
     <div class="edu-item">
       <strong>B.A. (Geography)</strong>
-      <p>Mangaldai College, Gauhati University â€¢ 2023 â€“ Present | 6th Semester</p>
+      <p>Mangaldai College, Gauhati University &bull; 2023 &ndash; Present | 6th Semester</p>
     </div>
     <div class="edu-item">
       <strong>Higher Secondary (AHSEC)</strong>
@@ -876,7 +889,7 @@ footer {
       <h2 class="contact-title"><i class="fas fa-globe"></i> Connect With Me</h2>
       
       <div class="social-links">
-        <a href="mailto:polkalita2004@gmail.com"><i class="fas fa-envelope"></i> polkalita2004@gmail.com</a>
+        <a href="mailto:polkalita2004@gmail.com" aria-label="Send email to polkalita2004@gmail.com" title="polkalita2004@gmail.com"><i class="fas fa-envelope"></i> Email</a>
         <a href="https://www.linkedin.com/in/prachurjya-kalita-279bb3355" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
         <a href="https://instagram.com/prachuuz_" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
         <a href="https://x.com/Prachux_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X</a>
@@ -890,7 +903,7 @@ footer {
 </main>
 
 <footer>
-  Â© 2026 Prachurjya Kalita
+  &copy; 2026 Prachurjya Kalita
 </footer>
 
 <!-- Scripts -->
@@ -912,12 +925,23 @@ function handleScrollEffects() {
     nav.classList.remove('scrolled');
   }
 
-  if (heroBg) {
+  const shouldAnimateHero = window.innerWidth > 900 && window.scrollY <= window.innerHeight * 1.2;
+  if (heroBg && shouldAnimateHero) {
     heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.05}px)`;
   }
 }
 
-window.addEventListener('scroll', handleScrollEffects, { passive: true });
+let isTicking = false;
+function onScroll() {
+  if (isTicking) return;
+  isTicking = true;
+  window.requestAnimationFrame(() => {
+    handleScrollEffects();
+    isTicking = false;
+  });
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
 handleScrollEffects();
 
 // Smooth scroll
