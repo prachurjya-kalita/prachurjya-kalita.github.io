@@ -718,4 +718,138 @@ footer {
   <div class="card" id="certificates" data-aos="fade-up">
     <h2><i class="fas fa-certificate"></i> Certificates</h2>
     <div class="gallery-grid">
-      <div class="gallery-item"
+      <div class="gallery-item" onclick="openLightbox('cert1.jpg')"><img src="cert1.jpg" alt="Cert" onerror="this.src='https://via.placeholder.com/400?text=Cert+1'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert2.jpg')"><img src="cert2.jpg" alt="Cert" onerror="this.src='https://via.placeholder.com/400?text=Cert+2'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert3.jpg')"><img src="cert3.jpg" alt="Cert" onerror="this.src='https://via.placeholder.com/400?text=Cert+3'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert4.jpg')"><img src="cert4.jpg" alt="Cert" onerror="this.src='https://via.placeholder.com/400?text=Cert+4'"></div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="card" id="education" data-aos="fade-up">
+    <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+    <div class="edu-item">
+      <strong>B.A. (Geography)</strong>
+      <p>Mangaldai College, Gauhati University • 2023 – Present | 6th Semester</p>
+    </div>
+    <div class="edu-item">
+      <strong>Higher Secondary (AHSEC)</strong>
+      <p>2023 | 82%</p>
+    </div>
+    <div class="edu-item">
+      <strong>HSLC (SEBA)</strong>
+      <p>2021 | 93.1%</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="card" id="contact" data-aos="fade-up">
+    <div class="contact-sphere">
+      <h2 style="border-left: none; text-align: center; justify-content: center;"><i class="fas fa-globe"></i> Connect With Me</h2>
+      
+      <div class="social-links">
+        <a href="mailto:polkalita2004@gmail.com"><i class="fas fa-envelope"></i> polkalita2004@gmail.com</a>
+        <a href="https://www.linkedin.com/in/prachurjya-kalita-279bb3355" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a href="https://instagram.com/prachuuz_" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://x.com/Prachux_" target="_blank"><i class="fab fa-x-twitter"></i> X</a><div class="social-links">
+
+<a href="mailto:yourmail@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+<a href="https://linkedin.com/in/yourprofile"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="https://instagram.com/yourprofile"><i class="fab fa-instagram"></i> Instagram</a>
+
+<!-- Yaha paste karo -->
+<a href="https://linktr.ee/PrachurjyaKalita" target="_blank">
+<i class="fas fa-link"></i> Linktree
+</a>
+
+<a href="https://drive.google.com/drive/folders/1so1dFXGgpMH6sloQ0UCT1qJ90LFiWPzX" target="_blank">
+<i class="fas fa-folder-open"></i> GIS Works & Research Articles
+</a>
+
+</div>
+      </div>
+      
+      <a href="cv.pdf" target="_blank" class="cv-btn"><i class="fas fa-download"></i> Download CV (PDF)</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2026 Prachurjya Kalita
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+// Initialize AOS
+AOS.init({
+  once: true,
+  duration: 800
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// Smooth scroll
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// Lightbox functions - OPTIMIZED
+let isLightboxOpen = false;
+
+function openLightbox(imgSrc) {
+  const modal = document.getElementById('lightboxModal');
+  const modalImg = document.getElementById('modalImage');
+  
+  modalImg.src = imgSrc;
+  modal.classList.add('active');
+  isLightboxOpen = true;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(event) {
+  // Don't close if clicking on the image
+  if (event.target.closest('.lightbox-content img')) return;
+  
+  const modal = document.getElementById('lightboxModal');
+  modal.classList.remove('active');
+  document.getElementById('modalImage').src = '';
+  isLightboxOpen = false;
+  document.body.style.overflow = '';
+}
+
+// Close on ESC key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && isLightboxOpen) {
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.remove('active');
+    document.getElementById('modalImage').src = '';
+    isLightboxOpen = false;
+    document.body.style.overflow = '';
+  }
+});
+
+// Parallax effect
+window.addEventListener('scroll', () => {
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.05}px)`;
+  }
+});
+</script>
+</body>
+</html>
