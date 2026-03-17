@@ -148,7 +148,7 @@ nav a:hover::after {
   z-index: 2;
 }
 
-/* ===== 3D BIRDS (same, but with smoother opacity) ===== */
+/* ===== 3D BIRDS ===== */
 .bird-3d {
   position: absolute;
   width: 50px;
@@ -256,7 +256,7 @@ main {
   z-index: 10;
 }
 
-/* ===== CARDS (Refined) ===== */
+/* ===== CARDS ===== */
 .card {
   background: rgba(18, 38, 24, 0.4);
   backdrop-filter: blur(16px);
@@ -336,7 +336,7 @@ main {
   100% { opacity: 0.2; }
 }
 
-/* ===== SKILL CHIPS (Improved) ===== */
+/* ===== SKILL CHIPS ===== */
 .skill-chip {
   display: flex;
   flex-wrap: wrap;
@@ -389,7 +389,7 @@ li::before {
   filter: drop-shadow(0 2px 3px #1f4a1f);
 }
 
-/* ===== GALLERY GRID (Improved Interaction) ===== */
+/* ===== GALLERY GRID ===== */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -455,8 +455,241 @@ li::before {
 .gallery-item:hover img {
   transform: scale(1.1);
 }
+</style>
+</head>
+<body><!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+  <div class="lightbox-content">
+    <img id="modalImage" src="" alt="Enlarged view">
+    <div class="close-lightbox" onclick="closeLightbox(event)">✕</div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
 
-/* ===== LIGHTBOX (Improved) ===== */
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#field">Fieldwork</a>
+    <a href="#maps">Maps</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+    <a href="cv.pdf" target="_blank">CV</a>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="bird-3d"></div>
+  <div class="bird-3d"></div>
+  <div class="bird-3d"></div>
+
+  <div class="hero-content">
+    <img src="profile.jpg" alt="Prachurjya Kalita" class="profile-pic" onerror="this.src='https://via.placeholder.com/400?text=Profile'">
+    <h1>Prachurjya Kalita</h1>
+    <p>Geography Student · Wildlife Research · GIS & Spatial Analysis</p>
+  </div>
+</header>
+
+<main>
+  <!-- About -->
+  <div class="card" id="about" data-aos="fade-up">
+    <h2><i class="fas fa-leaf"></i> About Me</h2>
+    <p>I am an undergraduate Geography student with a deep academic interest in wildlife research, forest landscapes, and the spatial dynamics of natural environments. I am particularly fascinated by how wildlife habitats, protected areas, and human activities interact across space and time.</p>
+    <p>I am actively learning and practicing <strong>Geographic Information Systems (GIS)</strong>, with a focus on <strong>QGIS</strong> and <strong>ArcGIS</strong>. My work involves land use and land cover analysis, basic habitat mapping, and spatial interpretation using satellite imagery and field-based data.</p>
+    <p>My long-term interest lies in applying GIS tools to wildlife conservation, habitat assessment, and environmental research, especially within forested and protected landscapes.</p>
+  </div>
+
+  <!-- What I'm Looking For -->
+  <div class="card highlight-card" data-aos="fade-up">
+    <h2><i class="fas fa-binoculars"></i> What I'm Looking For</h2>
+    <p>I am seeking internships, learning opportunities, and field-based projects related to <strong>wildlife research, conservation studies, GIS applications, and environmental analysis</strong>.</p>
+    <p>I am especially interested in projects involving forest ecosystems, protected areas, wildlife habitats, land use change, and the application of <strong>QGIS and ArcGIS</strong> for spatial mapping and research support.</p>
+  </div>
+
+  <!-- Skills -->
+  <div class="card" id="skills" data-aos="fade-up">
+    <h2><i class="fas fa-cog"></i> Interests & Skills</h2>
+    <div class="skill-chip">
+      <span>Wildlife Research</span>
+      <span>Conservation Studies</span>
+      <span>QGIS</span>
+      <span>ArcGIS</span>
+      <span>Cartography</span>
+      <span>Remote Sensing</span>
+      <span>Field Survey</span>
+      <span>Habitat Studies</span>
+      <span>Wildlife Photography</span>
+    </div>
+  </div>
+
+  <!-- Field Experience -->
+  <div class="card" id="field" data-aos="fade-up">
+    <h2><i class="fas fa-tree"></i> Field Experience & Project Work</h2>
+    <ul>
+      <li>Gained experience in an International project on <strong>Tiger Monitoring and Population Estimation</strong> using <strong>acoustic measures</strong> at <strong>Orang National Park</strong> and <strong>Kaziranga National Park</strong>.</li>
+      <li>Funded by the <strong>Rufford Foundation (UK)</strong> and the <strong>University of Wisconsin–Madison (USA)</strong>.</li>
+      <li>Participated in ecological and science-based field surveys</li>
+      <li>Assisted in camera trapping support for wildlife monitoring</li>
+      <li>Supported Installation of acoustic monitoring devices</li>
+      <li>Worked on field-based data collection using KoBo Toolbox questionnaires</li>
+    </ul>
+  </div>
+
+  <!-- Field Photos -->
+  <div class="card" data-aos="fade-up">
+    <h2><i class="fas fa-camera-retro"></i> Fieldwork Photos</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('field1.jpg', 'Fieldwork in Orang National Park')"><img src="field1.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+1'"></div>
+      <div class="gallery-item" onclick="openLightbox('field2.jpg', 'Camera trap setup in Kaziranga')"><img src="field2.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+2'"></div>
+      <div class="gallery-item" onclick="openLightbox('field3.jpg', 'Acoustic monitoring device installation')"><img src="field3.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+3'"></div>
+      <div class="gallery-item" onclick="openLightbox('field4.jpg', 'Field data collection with KoBo Toolbox')"><img src="field4.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+4'"></div>
+      <div class="gallery-item" onclick="openLightbox('field5.jpg', 'Team photo at Orang National Park')"><img src="field5.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+5'"></div>
+      <div class="gallery-item" onclick="openLightbox('field6.jpg', 'Tracking wildlife signs')"><img src="field6.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+6'"></div>
+      <div class="gallery-item" onclick="openLightbox('field7.jpg', 'Forest habitat assessment')"><img src="field7.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+7'"></div>
+      <div class="gallery-item" onclick="openLightbox('field8.jpg', 'Evening at the research camp')"><img src="field8.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+8'"></div>
+    </div>
+  </div>
+
+  <!-- Maps -->
+  <div class="card" id="maps" data-aos="fade-up">
+    <h2><i class="fas fa-map"></i> Maps & GIS Work</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('map1.jpg', 'Land Use / Land Cover Map - Orang NP')"><img src="map1.jpg" alt="Map" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Map+1'"></div>
+      <div class="gallery-item" onclick="openLightbox('map2.jpg', 'Habitat Suitability Model')"><img src="map2.jpg" alt="Map" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Map+2'"></div>
+      <div class="gallery-item" onclick="openLightbox('map3.jpg', 'Protected Area Boundary - Kaziranga')"><img src="map3.jpg" alt="Map" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Map+3'"></div>
+      <div class="gallery-item" onclick="openLightbox('map4.jpg', 'Elevation & Drainage Map')"><img src="map4.jpg" alt="Map" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Map+4'"></div>
+      <div class="gallery-item" onclick="openLightbox('map5.jpg', 'Forest Cover Change Analysis')"><img src="map5.jpg" alt="Map" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Map+5'"></div>
+    </div>
+  </div>
+
+  <!-- Certificates -->
+  <div class="card" id="certificates" data-aos="fade-up">
+    <h2><i class="fas fa-certificate"></i> Certificates</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('cert1.jpg', 'GIS Certification - QGIS')"><img src="cert1.jpg" alt="Certificate" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Cert+1'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert2.jpg', 'Wildlife Conservation Workshop')"><img src="cert2.jpg" alt="Certificate" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Cert+2'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert3.jpg', 'Remote Sensing Basics')"><img src="cert3.jpg" alt="Certificate" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Cert+3'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert4.jpg', 'Field Data Collection Methods')"><img src="cert4.jpg" alt="Certificate" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Cert+4'"></div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="card" id="education" data-aos="fade-up">
+    <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+    <div class="edu-item">
+      <strong>B.A. (Hons.) Geography</strong>
+      <p>Cotton University, Guwahati · 2022 – Present</p>
+    </div>
+    <div class="edu-item">
+      <strong>Higher Secondary (Science)</strong>
+      <p>Kendriya Vidyalaya · 2020 – 2022</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="card" id="contact" data-aos="fade-up">
+    <div class="contact-sphere">
+      <h2 style="border-left: none; justify-content: center;"><i class="fas fa-envelope"></i> Connect with Me</h2>
+      <div class="social-links">
+        <a href="#"><i class="fas fa-envelope"></i> prachurjya.k@example.com</a>
+        <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="#"><i class="fab fa-researchgate"></i> ResearchGate</a>
+        <a href="#"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+      <a href="cv.pdf" class="cv-btn" target="_blank"><i class="fas fa-download"></i> Download CV</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 Prachurjya Kalita · Designed for Wildlife & GIS</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Initialize AOS
+  AOS.init({ duration: 800, once: true, offset: 50 });
+
+  // ===== LIGHTBOX FUNCTION =====
+  function openLightbox(imgSrc, caption = '') {
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('modalImage');
+    const captionEl = document.getElementById('lightboxCaption');
+    modalImg.src = imgSrc;
+    captionEl.textContent = caption;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(event) {
+    if (event.target.classList.contains('lightbox-content') || event.target.closest('.lightbox-content img')) {
+      return;
+    }
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('lightboxModal');
+      if (modal.classList.contains('active')) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+  });
+
+  // ===== DYNAMIC NAVBAR =====
+  let lastScrollTop = 0;
+  const navbar = document.getElementById('navbar');
+  const threshold = 50;
+
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+    
+    if (Math.abs(scrollTop - lastScrollTop) < 10) return;
+    
+    if (scrollTop > lastScrollTop && scrollTop > threshold) {
+      navbar.classList.add('nav-hidden');
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+<!-- Lightbox Modal CSS (add this inside style tag) -->
+<style>
 .lightbox-modal {
   display: none;
   position: fixed;
@@ -538,7 +771,6 @@ li::before {
   to { opacity: 1; }
 }
 
-/* ===== EDUCATION CARDS ===== */
 .edu-item {
   background: rgba(0,0,0,0.2);
   backdrop-filter: blur(10px);
@@ -564,7 +796,6 @@ li::before {
   margin-bottom: 6px;
 }
 
-/* ===== CONTACT SECTION ===== */
 .contact-sphere {
   background: radial-gradient(circle at 30% 30%, #254d2a, #0f1f12);
   border-radius: 60px;
@@ -623,7 +854,6 @@ li::before {
   color: #e6ffb3;
 }
 
-/* ===== CV BUTTON ===== */
 .cv-btn {
   background: linear-gradient(135deg, #2b5a2b, #1a3f1a);
   border: none;
@@ -650,7 +880,6 @@ li::before {
   border-color: #e6ffb3;
 }
 
-/* ===== FOOTER ===== */
 footer {
   text-align: center;
   padding: 35px 20px;
@@ -660,7 +889,6 @@ footer {
   font-size: 0.95rem;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   nav { padding: 10px 20px; white-space: normal; }
   .nav-links { gap: 15px; }
@@ -687,97 +915,5 @@ footer {
   .cv-btn { padding: 14px 35px; font-size: 1.1rem; }
 }
 </style>
-</head>
-<body>
-
-<!-- Lightbox Modal (Improved) -->
-<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
-  <div class="lightbox-content">
-    <img id="modalImage" src="" alt="Enlarged view">
-    <div class="close-lightbox" onclick="closeLightbox(event)">✕</div>
-    <div class="lightbox-caption" id="lightboxCaption"></div>
-  </div>
-</div>
-
-<!-- Navigation (with dynamic hide/show) -->
-<nav id="navbar">
-  <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#field">Fieldwork</a>
-    <a href="#maps">Maps</a>
-    <a href="#certificates">Certificates</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-    <a href="cv.pdf" target="_blank">CV</a>
-  </div>
-</nav>
-
-<!-- Hero Section -->
-<header class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  
-  <div class="bird-3d"></div>
-  <div class="bird-3d"></div>
-  <div class="bird-3d"></div>
-
-  <div class="hero-content">
-    <img src="profile.jpg" alt="Prachurjya Kalita" class="profile-pic" onerror="this.src='https://via.placeholder.com/400?text=Profile'">
-    <h1>Prachurjya Kalita</h1>
-    <p>Geography Student · Wildlife Research · GIS & Spatial Analysis</p>
-  </div>
-</header>
-
-<main>
-  <!-- About -->
-  <div class="card" id="about" data-aos="fade-up">
-    <h2><i class="fas fa-leaf"></i> About Me</h2>
-    <p>I am an undergraduate Geography student with a deep academic interest in wildlife research, forest landscapes, and the spatial dynamics of natural environments. I am particularly fascinated by how wildlife habitats, protected areas, and human activities interact across space and time.</p>
-    <p>I am actively learning and practicing <strong>Geographic Information Systems (GIS)</strong>, with a focus on <strong>QGIS</strong> and <strong>ArcGIS</strong>. My work involves land use and land cover analysis, basic habitat mapping, and spatial interpretation using satellite imagery and field-based data.</p>
-    <p>My long-term interest lies in applying GIS tools to wildlife conservation, habitat assessment, and environmental research, especially within forested and protected landscapes.</p>
-  </div>
-
-  <!-- What I'm Looking For (Highlighted Card) -->
-  <div class="card highlight-card" data-aos="fade-up">
-    <h2><i class="fas fa-binoculars"></i> What I'm Looking For</h2>
-    <p>I am seeking internships, learning opportunities, and field-based projects related to <strong>wildlife research, conservation studies, GIS applications, and environmental analysis</strong>.</p>
-    <p>I am especially interested in projects involving forest ecosystems, protected areas, wildlife habitats, land use change, and the application of <strong>QGIS and ArcGIS</strong> for spatial mapping and research support.</p>
-  </div>
-
-  <!-- Skills -->
-  <div class="card" id="skills" data-aos="fade-up">
-    <h2><i class="fas fa-cog"></i> Interests & Skills</h2>
-    <div class="skill-chip">
-      <span>Wildlife Research</span>
-      <span>Conservation Studies</span>
-      <span>QGIS</span>
-      <span>ArcGIS</span>
-      <span>Cartography</span>
-      <span>Remote Sensing</span>
-      <span>Field Survey</span>
-      <span>Habitat Studies</span>
-      <span>Wildlife Photography</span>
-    </div>
-  </div>
-
-  <!-- Field Experience -->
-  <div class="card" id="field" data-aos="fade-up">
-    <h2><i class="fas fa-tree"></i> Field Experience & Project Work</h2>
-    <ul>
-      <li>Gained experience in an International project on <strong>Tiger Monitoring and Population Estimation</strong> using <strong>acoustic measures</strong> at <strong>Orang National Park</strong> and <strong>Kaziranga National Park</strong>.</li>
-      <li>Funded by the <strong>Rufford Foundation (UK)</strong> and the <strong>University of Wisconsin–Madison (USA)</strong>.</li>
-      <li>Participated in ecological and science-based field surveys</li>
-      <li>Assisted in camera trapping support for wildlife monitoring</li>
-      <li>Supported Installation of acoustic monitoring devices</li>
-      <li>Worked on field-based data collection using KoBo Toolbox questionnaires</li>
-    </ul>
-  </div>
-
-  <!-- Field Photos -->
-  <div class="card" data-aos="fade-up">
-    <h2><i class="fas fa-camera-retro"></i> Fieldwork Photos</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('field1.jpg', 'Fieldwork in Orang National Park')"><img src="field1.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+1'"></div>
-      <div class="gallery-item" onclick="openLightbox('field2.jpg', 'Camera trap setup in Kaziranga')"><img src="field2.jpg" alt="Field" loading="lazy" on
+</body>
+</html>
