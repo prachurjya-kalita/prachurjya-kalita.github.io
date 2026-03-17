@@ -4,15 +4,25 @@
 <meta charset="UTF-8">
 <title>Prachurjya Kalita</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio of Prachurjya Kalita, Geography student focused on wildlife research, GIS mapping, conservation studies, and field-based environmental analysis.">
+<meta name="theme-color" content="#0a120c">
 
 <!-- Font Awesome 6 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- AOS for scroll animations -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <style>
+:root {
+  --bg-main: #0a120c;
+  --text-main: #edf5e8;
+  --text-soft: #e2efd2;
+  --accent: #aed581;
+  --accent-soft: #e6ffb3;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,11 +30,13 @@
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background: #0a120c;
-  color: #edf5e8;
+  font-family: "Manrope", sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
   line-height: 1.7;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* ===== CURSOR NORMAL ===== */
@@ -78,7 +90,7 @@ nav.nav-hidden {
 }
 
 nav a {
-  color: #e2efd2;
+  color: var(--text-soft);
   font-size: 0.9rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -108,6 +120,14 @@ nav a:hover {
 }
 
 nav a:hover::after {
+  width: 100%;
+}
+
+nav a.active {
+  color: #ffffff;
+}
+
+nav a.active::after {
   width: 100%;
 }
 
@@ -548,6 +568,19 @@ li::before {
   color: white;
 }
 
+.contact-title {
+  border-left: none;
+  text-align: center;
+  justify-content: center;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
 /* ===== CV BUTTON ===== */
 .cv-btn {
   background: linear-gradient(135deg, #2b5a2b, #1a3f1a);
@@ -588,6 +621,7 @@ footer {
   nav { padding: 8px 15px; }
   .nav-links { gap: 10px; }
   nav a { font-size: 10px; letter-spacing: 1px; }
+  .hero-bg { background-attachment: scroll; }
   .hero h1 { font-size: 2.5rem; }
   .hero p { font-size: 1rem; }
   .profile-pic { width: 140px; height: 140px; }
@@ -602,6 +636,15 @@ footer {
 @media (max-width: 480px) {
   .hero h1 { font-size: 2.2rem; }
   .profile-pic { width: 130px; height: 130px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 </style>
 </head>
@@ -640,7 +683,7 @@ footer {
   <div class="bird-3d"></div>
 
   <div class="hero-content">
-    <img src="profile.jpg" alt="Prachurjya Kalita" class="profile-pic" onerror="this.src='https://via.placeholder.com/400?text=Profile'">
+    <img src="profile.jpg" alt="Portrait of Prachurjya Kalita" class="profile-pic" loading="eager" fetchpriority="high" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Profile'">
     <h1>Prachurjya Kalita</h1>
     <p>Geography Student · Wildlife Research Aspirant · GIS & Spatial Analysis</p>
   </div>
@@ -695,14 +738,14 @@ footer {
   <div class="card" data-aos="fade-up">
     <h2><i class="fas fa-camera-retro"></i> Fieldwork Photos</h2>
     <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('field1.jpg')"><img src="field1.jpg" alt="Field" onerror="this.src='https://via.placeholder.com/400?text=Field+1'"></div>
-      <div class="gallery-item" onclick="openLightbox('field2.jpg')"><img src="field2.jpg" alt="Field" onerror="this.src='https://via.placeholder.com/400?text=Field+2'"></div>
-      <div class="gallery-item" onclick="openLightbox('field3.jpg')"><img src="field3.jpg" alt="Field" onerror="this.src='https://via.placeholder.com/400?text=Field+3'"></div>
-      <div class="gallery-item" onclick="openLightbox('field4.jpg')"><img src="field4.jpg" alt="Field" onerror="this.src='https://via.placeholder.com/400?text=Field+4'"></div>
-      <div class="gallery-item" onclick="openLightbox('field5.jpg')"><img src="field5.jpg" alt="Field" onerror="this.src='https://via.placeholder.com/400?text=Field+5'"></div>
-      <div class="gallery-item" onclick="openLightbox('field6.jpg')"><img src="field6.jpg" alt="Field" onerror="this.src='https://via.placeholder.com/400?text=Field+6'"></div>
-      <div class="gallery-item" onclick="openLightbox('field7.jpg')"><img src="field7.jpg" alt="Field" onerror="this.src='https://via.placeholder.com/400?text=Field+7'"></div>
-      <div class="gallery-item" onclick="openLightbox('field8.jpg')"><img src="field8.jpg" alt="Field" onerror="this.src='https://via.placeholder.com/400?text=Field+8'"></div>
+      <div class="gallery-item" onclick="openLightbox('field1.jpg')"><img src="field1.jpg" alt="Fieldwork in forest terrain during wildlife survey" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+1'"></div>
+      <div class="gallery-item" onclick="openLightbox('field2.jpg')"><img src="field2.jpg" alt="Research activity in protected landscape" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+2'"></div>
+      <div class="gallery-item" onclick="openLightbox('field3.jpg')"><img src="field3.jpg" alt="Wildlife monitoring field documentation" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+3'"></div>
+      <div class="gallery-item" onclick="openLightbox('field4.jpg')"><img src="field4.jpg" alt="Survey team in natural habitat" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+4'"></div>
+      <div class="gallery-item" onclick="openLightbox('field5.jpg')"><img src="field5.jpg" alt="Forest-based ecological fieldwork" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+5'"></div>
+      <div class="gallery-item" onclick="openLightbox('field6.jpg')"><img src="field6.jpg" alt="On-ground conservation research activity" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+6'"></div>
+      <div class="gallery-item" onclick="openLightbox('field7.jpg')"><img src="field7.jpg" alt="Field data collection in wildlife landscape" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+7'"></div>
+      <div class="gallery-item" onclick="openLightbox('field8.jpg')"><img src="field8.jpg" alt="Habitat assessment field snapshot" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+8'"></div>
     </div>
   </div>
 
@@ -710,11 +753,11 @@ footer {
   <div class="card" id="maps" data-aos="fade-up">
     <h2><i class="fas fa-map"></i> Maps & GIS Work</h2>
     <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('map1.jpg')"><img src="map1.jpg" alt="Map" onerror="this.src='https://via.placeholder.com/400?text=Map+1'"></div>
-      <div class="gallery-item" onclick="openLightbox('map2.jpg')"><img src="map2.jpg" alt="Map" onerror="this.src='https://via.placeholder.com/400?text=Map+2'"></div>
-      <div class="gallery-item" onclick="openLightbox('map3.jpg')"><img src="map3.jpg" alt="Map" onerror="this.src='https://via.placeholder.com/400?text=Map+3'"></div>
-      <div class="gallery-item" onclick="openLightbox('map4.jpg')"><img src="map4.jpg" alt="Map" onerror="this.src='https://via.placeholder.com/400?text=Map+4'"></div>
-      <div class="gallery-item" onclick="openLightbox('map5.jpg')"><img src="map5.jpg" alt="Map" onerror="this.src='https://via.placeholder.com/400?text=Map+5'"></div>
+      <div class="gallery-item" onclick="openLightbox('map1.jpg')"><img src="map1.jpg" alt="GIS map project 1 showing spatial analysis output" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+1'"></div>
+      <div class="gallery-item" onclick="openLightbox('map2.jpg')"><img src="map2.jpg" alt="GIS map project 2 with thematic cartography" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+2'"></div>
+      <div class="gallery-item" onclick="openLightbox('map3.jpg')"><img src="map3.jpg" alt="Remote sensing and land cover interpretation map" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+3'"></div>
+      <div class="gallery-item" onclick="openLightbox('map4.jpg')"><img src="map4.jpg" alt="Wildlife habitat mapping visualization" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+4'"></div>
+      <div class="gallery-item" onclick="openLightbox('map5.jpg')"><img src="map5.jpg" alt="Cartographic output for environmental analysis" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+5'"></div>
     </div>
   </div>
 
@@ -722,10 +765,10 @@ footer {
   <div class="card" id="certificates" data-aos="fade-up">
     <h2><i class="fas fa-certificate"></i> Certificates</h2>
     <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('cert1.jpg')"><img src="cert1.jpg" alt="Cert" onerror="this.src='https://via.placeholder.com/400?text=Cert+1'"></div>
-      <div class="gallery-item" onclick="openLightbox('cert2.jpg')"><img src="cert2.jpg" alt="Cert" onerror="this.src='https://via.placeholder.com/400?text=Cert+2'"></div>
-      <div class="gallery-item" onclick="openLightbox('cert3.jpg')"><img src="cert3.jpg" alt="Cert" onerror="this.src='https://via.placeholder.com/400?text=Cert+3'"></div>
-      <div class="gallery-item" onclick="openLightbox('cert4.jpg')"><img src="cert4.jpg" alt="Cert" onerror="this.src='https://via.placeholder.com/400?text=Cert+4'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert1.jpg')"><img src="cert1.jpg" alt="Certificate in geography or GIS learning" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Cert+1'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert2.jpg')"><img src="cert2.jpg" alt="Certificate of fieldwork or research participation" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Cert+2'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert3.jpg')"><img src="cert3.jpg" alt="Certification related to conservation studies" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Cert+3'"></div>
+      <div class="gallery-item" onclick="openLightbox('cert4.jpg')"><img src="cert4.jpg" alt="Academic achievement certificate" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Cert+4'"></div>
     </div>
   </div>
 
@@ -749,7 +792,7 @@ footer {
   <!-- Contact -->
   <div class="card" id="contact" data-aos="fade-up">
     <div class="contact-sphere">
-      <h2 style="border-left: none; text-align: center; justify-content: center;"><i class="fas fa-globe"></i> Connect With Me</h2>
+      <h2 class="contact-title"><i class="fas fa-globe"></i> Connect With Me</h2>
       
       <div class="social-links">
         <a href="mailto:polkalita2004@gmail.com"><i class="fas fa-envelope"></i> polkalita2004@gmail.com</a>
@@ -778,15 +821,23 @@ AOS.init({
   duration: 800
 });
 
-// Navbar scroll effect
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
+const nav = document.getElementById('navbar');
+const heroBg = document.querySelector('.hero-bg');
+
+function handleScrollEffects() {
   if (window.scrollY > 50) {
     nav.classList.add('scrolled');
   } else {
     nav.classList.remove('scrolled');
   }
-});
+
+  if (heroBg) {
+    heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.05}px)`;
+  }
+}
+
+window.addEventListener('scroll', handleScrollEffects, { passive: true });
+handleScrollEffects();
 
 // Smooth scroll
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
@@ -798,6 +849,27 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// Highlight active nav link based on section visibility
+const sectionIds = ['home', 'about', 'skills', 'field', 'maps', 'certificates', 'education', 'contact'];
+const sectionElements = sectionIds
+  .map(id => document.getElementById(id))
+  .filter(Boolean);
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+if (sectionElements.length) {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const id = entry.target.id;
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+    });
+  }, { rootMargin: '-40% 0px -45% 0px', threshold: 0.01 });
+
+  sectionElements.forEach((section) => sectionObserver.observe(section));
+}
 
 // Lightbox functions - OPTIMIZED
 let isLightboxOpen = false;
@@ -834,13 +906,6 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Parallax effect
-window.addEventListener('scroll', () => {
-  const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
-    heroBg.style.transform = `scale(1.1) translateY(${window.scrollY * 0.05}px)`;
-  }
-});
 </script>
 </body>
 </html>
