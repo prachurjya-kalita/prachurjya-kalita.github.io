@@ -21,6 +21,9 @@
   --text-soft: #e2efd2;
   --accent: #aed581;
   --accent-soft: #e6ffb3;
+  --radius-card: 32px;
+  --elev-soft: 0 20px 40px -24px rgba(0, 0, 0, 0.9);
+  --elev-card: 0 40px 60px -26px rgba(0, 0, 0, 0.95);
 }
 
 * {
@@ -315,36 +318,55 @@ main {
   z-index: 10;
 }
 
+main > .card[id] {
+  scroll-margin-top: 120px;
+}
+
 /* ===== CARDS ===== */
 .card {
-  background: rgba(20, 40, 25, 0.3);
+  background:
+    linear-gradient(160deg, rgba(33, 62, 39, 0.24), rgba(12, 28, 16, 0.28)),
+    rgba(20, 40, 25, 0.3);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(174, 213, 129, 0.15);
   border-bottom: 3px solid rgba(174, 213, 129, 0.3);
-  border-radius: 40px;
+  border-radius: var(--radius-card);
   padding: 40px 40px;
   margin-bottom: 40px;
-  box-shadow: 0 40px 60px -25px black;
+  box-shadow: var(--elev-card);
   transform: perspective(1000px) rotateX(0.5deg);
-  transition: 0.5s;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(230, 255, 179, 0.6), transparent);
+  pointer-events: none;
 }
 
 .card:hover {
   transform: perspective(1000px) rotateX(0deg) translateY(-5px);
   border-color: rgba(174, 213, 129, 0.4);
   border-bottom-color: #aed581;
+  box-shadow: 0 50px 70px -28px rgba(0, 0, 0, 0.95);
 }
 
 .card h2 {
-  font-size: 2.2rem;
+  font-size: clamp(1.55rem, 2.4vw, 2.1rem);
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 22px;
   color: #d8f0c0;
   display: flex;
   align-items: center;
   gap: 12px;
   border-left: 6px solid #aed581;
   padding-left: 20px;
+  letter-spacing: 0.01em;
 }
 
 .card h2 i {
@@ -366,6 +388,7 @@ main {
   margin-bottom: 20px;
   text-align: justify;
   text-justify: inter-word;
+  line-height: 1.78;
 }
 
 /* ===== SKILL CHIPS ===== */
@@ -389,9 +412,10 @@ main {
 }
 
 .skill-chip span:hover {
-  transform: scale(1.03);
+  transform: translateY(-2px) scale(1.02);
   background: rgba(50, 100, 50, 0.5);
   border-color: #e6ffb3;
+  box-shadow: var(--elev-soft);
 }
 
 /* ===== LIST STYLING ===== */
@@ -411,7 +435,7 @@ li {
 }
 
 li::before {
-  content: "ðŸŒ¿";
+  content: "\1F33F";
   position: absolute;
   left: 0;
   top: -2px;
@@ -433,7 +457,7 @@ li::before {
   aspect-ratio: 1/1;
   border: 2px solid rgba(174, 213, 129, 0.3);
   transition: transform 0.2s ease, border-color 0.2s ease;
-  box-shadow: 0 20px 30px -15px black;
+  box-shadow: var(--elev-soft);
   cursor: pointer;
   will-change: transform;
 }
@@ -463,7 +487,7 @@ li::before {
 .gallery-item:hover {
   transform: scale(1.02);
   border-color: #aed581;
-  box-shadow: 0 30px 40px -15px #1f4a1f;
+  box-shadow: 0 32px 44px -20px rgba(31, 74, 31, 0.8);
 }
 
 .gallery-item:hover img {
@@ -570,11 +594,11 @@ li::before {
 /* ===== CONTACT SECTION ===== */
 .contact-sphere {
   background: radial-gradient(circle at 30% 30%, #1f4025, #0f1f12);
-  border-radius: 50px;
+  border-radius: var(--radius-card);
   padding: 50px 40px;
   text-align: center;
   border: 1px solid rgba(174,213,129,0.3);
-  box-shadow: 0 50px 80px -30px black;
+  box-shadow: var(--elev-card);
   transition: 0.5s;
 }
 
@@ -602,7 +626,7 @@ li::before {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(174,213,129,0.3);
   border-bottom: 2px solid #aed581;
-  transition: 0.3s;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -627,6 +651,7 @@ li::before {
   background: rgba(50, 100, 50, 0.5);
   border-color: #e6ffb3;
   color: white;
+  box-shadow: var(--elev-soft);
 }
 
 .contact-title {
@@ -654,7 +679,7 @@ button:focus-visible {
   transition: 0.3s;
   font-weight: 600;
   letter-spacing: 1px;
-  box-shadow: 0 20px 30px -15px black;
+  box-shadow: var(--elev-soft);
   display: inline-block;
   text-decoration: none;
   margin-top: 20px;
@@ -664,16 +689,17 @@ button:focus-visible {
 .cv-btn:hover {
   transform: translateY(-3px);
   background: linear-gradient(135deg, #3a753a, #2b5a2b);
-  box-shadow: 0 25px 35px -15px #1f4a1f;
+  box-shadow: 0 24px 36px -16px #1f4a1f;
 }
 
 /* ===== FOOTER ===== */
 footer {
   text-align: center;
   padding: 30px 20px;
-  background: #0a140c;
+  background: linear-gradient(180deg, #0a140c, #09110a);
   color: #aed581;
   border-top: 1px solid rgba(174,213,129,0.2);
+  letter-spacing: 0.03em;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -718,6 +744,9 @@ footer {
     font-size: 0.95rem;
     padding: 12px 14px;
   }
+  .contact-sphere {
+    padding: 34px 20px;
+  }
 }
 
 @media (min-width: 1001px) {
@@ -748,7 +777,7 @@ footer {
 <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Image preview" aria-hidden="true" onclick="closeLightbox(event)">
   <div class="lightbox-content">
     <img id="modalImage" src="" alt="Expanded image">
-    <button type="button" class="close-lightbox" onclick="closeLightbox(event)" aria-label="Close image preview">✕</button>
+    <button type="button" class="close-lightbox" onclick="closeLightbox(event)" aria-label="Close image preview">&times;</button>
   </div>
 </div>
 
