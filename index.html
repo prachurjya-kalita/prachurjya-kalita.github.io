@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -39,6 +39,28 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+html {
+  scroll-padding-top: 110px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 2500;
+  background: #e6ffb3;
+  color: #0a120c;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
 /* ===== CURSOR NORMAL ===== */
 * {
   cursor: auto;
@@ -58,8 +80,9 @@ nav {
   top: 20px;
   left: 50%;
   transform: translateX(-50%) perspective(1000px) rotateX(2deg);
-  padding: 12px 28px;
-  border-radius: 60px;
+  width: min(96vw, 1120px);
+  padding: 10px 12px;
+  border-radius: 22px;
   background: rgba(5, 20, 10, 0.4);
   backdrop-filter: blur(20px) saturate(200%);
   border: 1px solid rgba(174, 213, 129, 0.2);
@@ -74,7 +97,7 @@ nav.scrolled {
   background: rgba(2, 15, 5, 0.9);
   border-bottom: 2px solid #aed581;
   box-shadow: 0 20px 40px -15px black, 0 0 0 1px rgba(174, 213, 129, 0.2) inset;
-  padding: 10px 28px;
+  padding: 8px 12px;
   top: 15px;
 }
 
@@ -84,51 +107,67 @@ nav.nav-hidden {
 
 .nav-links {
   display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none;
 }
 
 nav a {
   color: var(--text-soft);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.08em;
   text-decoration: none;
-  padding: 6px 0;
+  padding: 9px 12px;
   position: relative;
-  transition: color 0.3s;
-  border-bottom: 2px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 nav a::after {
   content: '';
   position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0%;
+  bottom: 4px;
+  left: 12px;
+  width: calc(100% - 24px);
   height: 2px;
   background: linear-gradient(90deg, #aed581, #e6ffb3);
-  transition: width 0.3s ease;
+  transition: opacity 0.25s ease;
   border-radius: 2px;
-  opacity: 0.8;
+  opacity: 0;
 }
 
 nav a:hover {
   color: white;
+  background: rgba(174, 213, 129, 0.09);
+  border-color: rgba(174, 213, 129, 0.22);
 }
 
 nav a:hover::after {
-  width: 100%;
+  opacity: 1;
 }
 
 nav a.active {
   color: #ffffff;
+  background: rgba(174, 213, 129, 0.12);
+  border-color: rgba(174, 213, 129, 0.35);
 }
 
 nav a.active::after {
-  width: 100%;
+  opacity: 1;
 }
 
 /* ===== HERO SECTION - BETTER GRADIENT ===== */
@@ -372,7 +411,7 @@ li {
 }
 
 li::before {
-  content: "🌿";
+  content: "ðŸŒ¿";
   position: absolute;
   left: 0;
   top: -2px;
@@ -409,6 +448,11 @@ li::before {
 
 .gallery-item:active {
   transform: scale(0.98);
+}
+
+.gallery-item:focus-visible {
+  outline: 2px solid #e6ffb3;
+  outline-offset: 2px;
 }
 
 .gallery-item:hover {
@@ -477,6 +521,8 @@ li::before {
   justify-content: center;
   transition: 0.2s ease;
   border: 1px solid #aed581;
+  padding: 0;
+  appearance: none;
 }
 
 .close-lightbox:hover {
@@ -533,27 +579,33 @@ li::before {
 }
 
 .social-links {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 15px;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: stretch;
   margin: 30px 0 20px;
 }
 
 .social-links a {
   color: #edf5e8;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-decoration: none;
-  padding: 12px 28px;
-  border-radius: 50px;
+  padding: 12px 16px;
+  border-radius: 16px;
   background: rgba(30, 60, 30, 0.4);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(174,213,129,0.3);
   border-bottom: 2px solid #aed581;
   transition: 0.3s;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  min-height: 60px;
+  height: 100%;
+  text-align: center;
+  line-height: 1.35;
 }
 
 .social-links a i {
@@ -618,15 +670,29 @@ footer {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 800px) {
   * { cursor: auto; }
-  nav { padding: 8px 15px; }
-  .nav-links { gap: 10px; }
-  nav a { font-size: 10px; letter-spacing: 1px; }
+  nav {
+    width: calc(100vw - 16px);
+    border-radius: 18px;
+    padding: 8px 8px;
+    top: 10px;
+  }
+  nav.scrolled { top: 8px; }
+  .nav-links { gap: 6px; }
+  nav a {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    padding: 8px 10px;
+  }
   .hero-bg { background-attachment: scroll; }
   .hero h1 { font-size: 2.5rem; }
   .hero p { font-size: 1rem; }
   .profile-pic { width: 140px; height: 140px; }
   .card { padding: 30px 20px; }
   .card h2 { font-size: 1.8rem; }
+  .social-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
   .close-lightbox {
     top: -30px;
     right: 0;
@@ -636,6 +702,20 @@ footer {
 @media (max-width: 480px) {
   .hero h1 { font-size: 2.2rem; }
   .profile-pic { width: 130px; height: 130px; }
+  .social-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1001px) {
+  .nav-links {
+    justify-content: center;
+    overflow-x: visible;
+  }
+  nav a {
+    font-size: 0.84rem;
+    padding: 9px 13px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -649,12 +729,13 @@ footer {
 </style>
 </head>
 <body>
+<a href="#about" class="skip-link">Skip to main content</a>
 
 <!-- Lightbox Modal -->
-<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+<div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Image preview" aria-hidden="true" onclick="closeLightbox(event)">
   <div class="lightbox-content">
-    <img id="modalImage" src="" alt="Enlarged view">
-    <div class="close-lightbox" onclick="closeLightbox(event)">✕</div>
+    <img id="modalImage" src="" alt="Expanded image">
+    <button type="button" class="close-lightbox" onclick="closeLightbox(event)" aria-label="Close image preview">✕</button>
   </div>
 </div>
 
@@ -685,7 +766,7 @@ footer {
   <div class="hero-content">
     <img src="profile.jpg" alt="Portrait of Prachurjya Kalita" class="profile-pic" loading="eager" fetchpriority="high" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Profile'">
     <h1>Prachurjya Kalita</h1>
-    <p>Geography Student · Wildlife Research Aspirant · GIS & Spatial Analysis</p>
+    <p>Geography Student Â· Wildlife Research Aspirant Â· GIS & Spatial Analysis</p>
   </div>
 </header>
 
@@ -726,7 +807,7 @@ footer {
     <h2><i class="fas fa-tree"></i> Field Experience & Project Work</h2>
     <ul>
       <li>Gained experience in an International project on <strong>Tiger Monitoring and Population Estimation</strong> using <strong>acoustic measures</strong> at <strong>Orang National Park-Eastern Assam</strong> and <strong>Kaziranga National Park-Karbi Anglong Landscape</strong>.</li>
-      <li>Funded by the <strong>Rufford Foundation (UK)</strong> and the <strong>University of Wisconsin–Madison (USA)</strong>.</li>
+      <li>Funded by the <strong>Rufford Foundation (UK)</strong> and the <strong>University of Wisconsinâ€“Madison (USA)</strong>.</li>
       <li>Participated in ecological and science-based field surveys.</li>
       <li>Assisted in camera trapping support for wildlife monitoring.</li>
       <li>Supported Installation of acoustic monitoring devices.</li>
@@ -777,7 +858,7 @@ footer {
     <h2><i class="fas fa-graduation-cap"></i> Education</h2>
     <div class="edu-item">
       <strong>B.A. (Geography)</strong>
-      <p>Mangaldai College, Gauhati University • 2023 – Present | 6th Semester</p>
+      <p>Mangaldai College, Gauhati University â€¢ 2023 â€“ Present | 6th Semester</p>
     </div>
     <div class="edu-item">
       <strong>Higher Secondary (AHSEC)</strong>
@@ -809,7 +890,7 @@ footer {
 </main>
 
 <footer>
-  © 2026 Prachurjya Kalita
+  Â© 2026 Prachurjya Kalita
 </footer>
 
 <!-- Scripts -->
@@ -864,6 +945,11 @@ if (sectionElements.length) {
       const id = entry.target.id;
       navLinks.forEach((link) => {
         link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        if (link.getAttribute('href') === `#${id}`) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
       });
     });
   }, { rootMargin: '-40% 0px -45% 0px', threshold: 0.01 });
@@ -873,15 +959,34 @@ if (sectionElements.length) {
 
 // Lightbox functions - OPTIMIZED
 let isLightboxOpen = false;
+let lastFocusedElement = null;
+
+document.querySelectorAll('.gallery-item').forEach((item, index) => {
+  const img = item.querySelector('img');
+  item.setAttribute('role', 'button');
+  item.setAttribute('tabindex', '0');
+  item.setAttribute('aria-label', img ? `Open image: ${img.alt}` : `Open image ${index + 1}`);
+  item.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const source = img ? img.getAttribute('src') : null;
+      if (source) openLightbox(source);
+    }
+  });
+});
 
 function openLightbox(imgSrc) {
   const modal = document.getElementById('lightboxModal');
   const modalImg = document.getElementById('modalImage');
+  const closeBtn = document.querySelector('.close-lightbox');
   
+  lastFocusedElement = document.activeElement;
   modalImg.src = imgSrc;
   modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
   isLightboxOpen = true;
   document.body.style.overflow = 'hidden';
+  if (closeBtn) closeBtn.focus();
 }
 
 function closeLightbox(event) {
@@ -890,22 +995,23 @@ function closeLightbox(event) {
   
   const modal = document.getElementById('lightboxModal');
   modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
   document.getElementById('modalImage').src = '';
   isLightboxOpen = false;
   document.body.style.overflow = '';
+  if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+    lastFocusedElement.focus();
+  }
 }
 
 // Close on ESC key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && isLightboxOpen) {
-    const modal = document.getElementById('lightboxModal');
-    modal.classList.remove('active');
-    document.getElementById('modalImage').src = '';
-    isLightboxOpen = false;
-    document.body.style.overflow = '';
+    closeLightbox({ target: document.body });
   }
 });
 
 </script>
 </body>
 </html>
+
