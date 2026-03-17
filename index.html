@@ -1,130 +1,783 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Prachurjya Kalita · Wildlife & GIS Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Prachurjya Kalita · Wildlife & GIS Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<!-- AOS for scroll animations -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <style>
-        /* CSS remains mostly the same, but added a few smooth transitions */
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: "Inter", sans-serif; background: #0a120c; color: #edf5e8; line-height: 1.7; overflow-x: hidden; }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        /* Premium Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f1f12; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #8bc34a, #4c7a34); border-radius: 10px; }
+body {
+  font-family: "Inter", sans-serif;
+  background: #0a120c;
+  color: #edf5e8;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-        /* Navbar Refined */
-        nav {
-            position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
-            padding: 12px 25px; border-radius: 50px;
-            background: rgba(5, 20, 10, 0.4); backdrop-filter: blur(15px);
-            border: 1px solid rgba(200, 240, 150, 0.1); z-index: 1000;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        nav.scrolled { top: 10px; background: rgba(2, 15, 5, 0.9); border: 1px solid #aed581; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .nav-links { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
-        nav a { color: #dcf2cb; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; text-decoration: none; transition: 0.3s; }
-        nav a:hover { color: #aed581; }
+/* ===== PREMIUM SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0f1f12; }
+::-webkit-scrollbar-thumb { 
+  background: linear-gradient(180deg, #8bc34a, #4c7a34);
+  border-radius: 10px;
+  border: 1px solid #1a3a1a;
+}
 
-        /* Hero & Birds */
-        .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-        .hero-bg { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,25,10,0.6), #0a120c), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e'); background-size: cover; background-position: center; filter: brightness(0.7); z-index: -1; animation: kenBurns 20s infinite alternate; }
-        @keyframes kenBurns { from { transform: scale(1); } to { transform: scale(1.1); } }
+/* ===== DYNAMIC 3D NAVBAR ===== */
+nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) perspective(1000px) rotateX(2deg);
+  padding: 12px 28px;
+  border-radius: 60px;
+  background: rgba(5, 20, 10, 0.4);
+  backdrop-filter: blur(20px) saturate(200%);
+  border: 1px solid rgba(174, 213, 129, 0.2);
+  border-bottom: 2px solid rgba(174, 213, 129, 0.3);
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.8), 0 0 0 1px rgba(174, 213, 129, 0.1) inset;
+  z-index: 999;
+  transition: top 0.4s cubic-bezier(0.2, 0.9, 0.3, 1), background 0.3s, padding 0.3s, box-shadow 0.3s;
+  white-space: nowrap;
+}
 
-        /* Rest of your card/gallery styles... (Kept same for brevity) */
-        .card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(174, 213, 129, 0.1); border-radius: 30px; padding: 40px; margin-bottom: 40px; transition: 0.4s; }
-        .card:hover { border-color: #aed581; transform: translateY(-5px); }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .gallery-item { border-radius: 15px; overflow: hidden; cursor: pointer; border: 1px solid rgba(174,213,129,0.2); transition: 0.3s; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .gallery-item:hover img { transform: scale(1.1); }
+nav.scrolled {
+  background: rgba(2, 15, 5, 0.9);
+  border-bottom: 2px solid #aed581;
+  box-shadow: 0 20px 40px -15px black, 0 0 0 1px rgba(174, 213, 129, 0.2) inset;
+  padding: 10px 28px;
+  top: 15px;
+}
 
-        /* Lightbox CSS */
-        .lightbox-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
-        .lightbox-content img { max-width: 90%; max-height: 80vh; border-radius: 10px; border: 2px solid #aed581; }
-        .close-lightbox { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
-    </style>
+nav.nav-hidden {
+  top: -100px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav a {
+  color: #e2efd2;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  text-decoration: none;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.3s;
+  border-bottom: 2px solid transparent;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #aed581, #e6ffb3);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+nav a:hover {
+  color: white;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  margin-top: -20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(180deg, rgba(0,35,15,0.7) 0%, rgba(0,15,5,0.95) 100%),
+    url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: blur(3px) brightness(0.5);
+  transform: scale(1.1);
+  animation: kenBurns 30s infinite alternate;
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1.1) translate(0, 0); }
+  100% { transform: scale(1.25) translate(-1.5%, -1.5%); }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #0a120c 0%, transparent 40%);
+  z-index: 2;
+}
+
+/* ===== 3D BIRDS (same, but with smoother opacity) ===== */
+.bird-3d {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  transform-style: preserve-3d;
+  animation: fly3D 28s infinite linear;
+  z-index: 5;
+  opacity: 0;
+}
+
+.bird-3d::before,
+.bird-3d::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 12px;
+  background: rgba(220, 255, 200, 0.3);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(174,213,129,0.5);
+  backdrop-filter: blur(2px);
+}
+
+.bird-3d::before {
+  transform: rotateY(20deg) rotateX(10deg);
+}
+.bird-3d::after {
+  right: -15px;
+  transform: rotateY(-20deg) rotateX(-10deg);
+}
+
+.bird-3d:nth-child(1) { top: 20%; animation-duration: 32s; }
+.bird-3d:nth-child(2) { top: 40%; animation-duration: 38s; animation-delay: 4s; }
+.bird-3d:nth-child(3) { top: 60%; animation-duration: 42s; animation-delay: 8s; }
+
+@keyframes fly3D {
+  0% { left: -10%; transform: translateZ(0) rotateY(0deg); opacity: 0; }
+  10% { opacity: 0.7; transform: translateZ(100px) rotateY(180deg); }
+  50% { opacity: 0.7; transform: translateZ(200px) rotateY(360deg); }
+  90% { opacity: 0.7; transform: translateZ(100px) rotateY(540deg); }
+  100% { left: 110%; transform: translateZ(0) rotateY(720deg); opacity: 0; }
+}
+
+/* ===== HERO CONTENT ===== */
+.hero-content {
+  position: relative;
+  z-index: 20;
+  max-width: 900px;
+  padding: 20px;
+  animation: floatIn 1.8s ease-out;
+}
+
+@keyframes floatIn {
+  0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #aed581;
+  box-shadow: 0 25px 40px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1) inset;
+  margin-bottom: 20px;
+  transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+
+.profile-pic:hover {
+  transform: scale(1.03);
+  border-color: #e6ffb3;
+  box-shadow: 0 30px 50px -15px #1f4a1f;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff, #d4f0b5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 8px 25px rgba(0,20,0,0.8);
+}
+
+.hero p {
+  font-size: 1.3rem;
+  font-weight: 350;
+  color: #f0ffe0;
+  text-shadow: 0 2px 15px black;
+  background: rgba(10, 30, 15, 0.4);
+  backdrop-filter: blur(8px);
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 60px;
+  border: 1px solid rgba(174,213,129,0.3);
+  box-shadow: 0 10px 20px -10px black;
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 60px 25px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ===== CARDS (Refined) ===== */
+.card {
+  background: rgba(18, 38, 24, 0.4);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(174, 213, 129, 0.15);
+  border-bottom: 3px solid rgba(174, 213, 129, 0.25);
+  border-radius: 48px;
+  padding: 45px 45px;
+  margin-bottom: 45px;
+  box-shadow: 0 40px 70px -30px black;
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1), border-color 0.3s, box-shadow 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(174, 213, 129, 0.4);
+  border-bottom-color: #aed581;
+  box-shadow: 0 50px 80px -30px #1a3a1a;
+}
+
+.card h2 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #e2f2d2;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-left: 6px solid #aed581;
+  padding-left: 25px;
+  text-shadow: 0 2px 5px rgba(0,20,0,0.5);
+}
+
+.card h2 i {
+  font-size: 2.4rem;
+  color: #aed581;
+  filter: drop-shadow(0 4px 8px #1f4a1f);
+  animation: iconFloat 3s infinite alternate ease-in-out;
+}
+
+@keyframes iconFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.card p {
+  font-size: 1.15rem;
+  font-weight: 320;
+  color: #e2efd2;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Highlight for "What I'm Looking For" */
+.card.highlight-card {
+  background: linear-gradient(145deg, rgba(25, 55, 30, 0.5), rgba(15, 35, 20, 0.5));
+  border-bottom: 3px solid #c8e6a5;
+  position: relative;
+  overflow: hidden;
+}
+
+.card.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #aed581, transparent 40%, transparent 60%, #6a994e);
+  border-radius: 50px;
+  z-index: -1;
+  animation: borderRotate 6s linear infinite;
+}
+
+@keyframes borderRotate {
+  0% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+  100% { opacity: 0.2; }
+}
+
+/* ===== SKILL CHIPS (Improved) ===== */
+.skill-chip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 25px 0 5px;
+}
+
+.skill-chip span {
+  background: rgba(25, 55, 30, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(174, 213, 129, 0.4);
+  border-bottom: 2px solid #aed581;
+  padding: 10px 26px;
+  border-radius: 60px;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #f0ffe6;
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 5px 10px -5px black;
+  cursor: default;
+}
+
+.skill-chip span:hover {
+  transform: scale(1.05) translateY(-2px);
+  background: rgba(45, 95, 55, 0.7);
+  border-color: #e6ffb3;
+  box-shadow: 0 10px 15px -8px #1f4a1f;
+}
+
+/* ===== LIST STYLING ===== */
+ul {
+  list-style: none;
+}
+
+li {
+  margin-bottom: 18px;
+  padding-left: 35px;
+  position: relative;
+  font-size: 1.15rem;
+  font-weight: 330;
+  color: #e2efd2;
+}
+
+li::before {
+  content: "🌿";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  font-size: 1.4rem;
+  filter: drop-shadow(0 2px 3px #1f4a1f);
+}
+
+/* ===== GALLERY GRID (Improved Interaction) ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  border: 2px solid rgba(174, 213, 129, 0.3);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 20px 30px -15px black;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  pointer-events: none;
+  display: block;
+}
+
+.gallery-item::after {
+  content: '🔍';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  font-size: 2rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  border: 1px solid #aed581;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+  border-color: #aed581;
+  box-shadow: 0 30px 40px -15px #1f4a1f;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* ===== LIGHTBOX (Improved) ===== */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 15, 5, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-modal.active {
+  display: flex;
+  animation: fadeIn 0.2s ease;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 24px;
+  border: 3px solid #aed581;
+  box-shadow: 0 30px 70px black;
+  animation: zoomIn 0.2s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close-lightbox {
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  color: white;
+  font-size: 2.2rem;
+  cursor: pointer;
+  background: rgba(20, 40, 20, 0.8);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+  border: 1px solid #aed581;
+  line-height: 1;
+}
+
+.close-lightbox:hover {
+  background: #aed581;
+  color: #0a120c;
+  transform: scale(1.1) rotate(90deg);
+}
+
+.lightbox-caption {
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #e2efd2;
+  font-size: 1rem;
+  font-weight: 400;
+  text-shadow: 0 2px 10px black;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== EDUCATION CARDS ===== */
+.edu-item {
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(10px);
+  padding: 24px 35px;
+  border-radius: 36px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(174,213,129,0.2);
+  border-left: 6px solid #aed581;
+  transition: 0.3s;
+}
+
+.edu-item:hover {
+  transform: translateX(12px);
+  border-left-color: #e6ffb3;
+  background: rgba(35, 70, 40, 0.5);
+}
+
+.edu-item strong {
+  color: #d8f0c0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ===== CONTACT SECTION ===== */
+.contact-sphere {
+  background: radial-gradient(circle at 30% 30%, #254d2a, #0f1f12);
+  border-radius: 60px;
+  padding: 55px 45px;
+  text-align: center;
+  border: 1px solid rgba(174,213,129,0.3);
+  box-shadow: 0 50px 80px -30px black;
+  transition: 0.5s;
+}
+
+.contact-sphere:hover {
+  transform: translateY(-5px);
+  border-color: #aed581;
+  box-shadow: 0 60px 90px -30px #1f4a1f;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 35px 0 25px;
+}
+
+.social-links a {
+  color: #edf5e8;
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 60px;
+  background: rgba(30, 65, 35, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(174,213,129,0.3);
+  border-bottom: 2px solid #aed581;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 450;
+}
+
+.social-links a i {
+  font-size: 1.4rem;
+  color: #aed581;
+  transition: 0.2s;
+}
+
+.social-links a:hover {
+  transform: translateY(-4px);
+  background: rgba(50, 110, 55, 0.6);
+  border-color: #e6ffb3;
+  color: white;
+}
+
+.social-links a:hover i {
+  color: #e6ffb3;
+}
+
+/* ===== CV BUTTON ===== */
+.cv-btn {
+  background: linear-gradient(135deg, #2b5a2b, #1a3f1a);
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  padding: 18px 60px;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  box-shadow: 0 20px 30px -15px black;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 25px;
+  border: 1px solid #aed581;
+  text-transform: uppercase;
+}
+
+.cv-btn:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, #3a853a, #2b5a2b);
+  box-shadow: 0 30px 40px -15px #1f4a1f;
+  border-color: #e6ffb3;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 35px 20px;
+  background: #0a140c;
+  color: #aed581;
+  border-top: 1px solid rgba(174,213,129,0.2);
+  font-size: 0.95rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  nav { padding: 10px 20px; white-space: normal; }
+  .nav-links { gap: 15px; }
+  nav a { font-size: 0.8rem; letter-spacing: 1px; }
+  .hero h1 { font-size: 3rem; }
+  .hero p { font-size: 1.1rem; padding: 8px 20px; }
+  .profile-pic { width: 160px; height: 160px; }
+  .card { padding: 35px 25px; }
+  .card h2 { font-size: 2rem; }
+  .close-lightbox {
+    top: -30px;
+    right: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2.5rem; }
+  .profile-pic { width: 140px; height: 140px; }
+  .hero p { font-size: 1rem; }
+  .card h2 { font-size: 1.8rem; }
+  .nav-links { gap: 10px; }
+  nav a { font-size: 0.7rem; }
+  .social-links a { padding: 10px 18px; font-size: 1rem; }
+  .cv-btn { padding: 14px 35px; font-size: 1.1rem; }
+}
+</style>
 </head>
 <body>
 
-<div class="lightbox-modal" id="lightboxModal">
-    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
-    <div class="lightbox-content">
-        <img id="modalImage" src="" alt="View">
-    </div>
+<!-- Lightbox Modal (Improved) -->
+<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+  <div class="lightbox-content">
+    <img id="modalImage" src="" alt="Enlarged view">
+    <div class="close-lightbox" onclick="closeLightbox(event)">✕</div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
 </div>
 
+<!-- Navigation (with dynamic hide/show) -->
 <nav id="navbar">
-    <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#field">Fieldwork</a>
-        <a href="#maps">Maps</a>
-        <a href="#education">Education</a>
-        <a href="cv.pdf" target="_blank">CV</a>
-    </div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#field">Fieldwork</a>
+    <a href="#maps">Maps</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+    <a href="cv.pdf" target="_blank">CV</a>
+  </div>
 </nav>
 
+<!-- Hero Section -->
 <header class="hero" id="home">
-    <div class="hero-bg"></div>
-    <div class="hero-content" data-aos="zoom-in">
-        <img src="profile.jpg" alt="Prachurjya" class="profile-pic" style="width:180px; height:180px; border-radius:50%; border:3px solid #aed581; margin-bottom:20px;" onerror="this.src='https://via.placeholder.com/180'">
-        <h1>Prachurjya Kalita</h1>
-        <p style="background: rgba(0,0,0,0.4); padding: 5px 20px; border-radius: 20px;">Geography · Wildlife · GIS</p>
-    </div>
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  
+  <div class="bird-3d"></div>
+  <div class="bird-3d"></div>
+  <div class="bird-3d"></div>
+
+  <div class="hero-content">
+    <img src="profile.jpg" alt="Prachurjya Kalita" class="profile-pic" onerror="this.src='https://via.placeholder.com/400?text=Profile'">
+    <h1>Prachurjya Kalita</h1>
+    <p>Geography Student · Wildlife Research · GIS & Spatial Analysis</p>
+  </div>
 </header>
 
-<main style="max-width: 1100px; margin: auto; padding: 40px 20px;">
-    <div class="card" id="about" data-aos="fade-up">
-        <h2><i class="fas fa-leaf"></i> About Me</h2>
-        <p>I am an undergraduate Geography student with a deep academic interest in wildlife research and GIS...</p>
+<main>
+  <!-- About -->
+  <div class="card" id="about" data-aos="fade-up">
+    <h2><i class="fas fa-leaf"></i> About Me</h2>
+    <p>I am an undergraduate Geography student with a deep academic interest in wildlife research, forest landscapes, and the spatial dynamics of natural environments. I am particularly fascinated by how wildlife habitats, protected areas, and human activities interact across space and time.</p>
+    <p>I am actively learning and practicing <strong>Geographic Information Systems (GIS)</strong>, with a focus on <strong>QGIS</strong> and <strong>ArcGIS</strong>. My work involves land use and land cover analysis, basic habitat mapping, and spatial interpretation using satellite imagery and field-based data.</p>
+    <p>My long-term interest lies in applying GIS tools to wildlife conservation, habitat assessment, and environmental research, especially within forested and protected landscapes.</p>
+  </div>
+
+  <!-- What I'm Looking For (Highlighted Card) -->
+  <div class="card highlight-card" data-aos="fade-up">
+    <h2><i class="fas fa-binoculars"></i> What I'm Looking For</h2>
+    <p>I am seeking internships, learning opportunities, and field-based projects related to <strong>wildlife research, conservation studies, GIS applications, and environmental analysis</strong>.</p>
+    <p>I am especially interested in projects involving forest ecosystems, protected areas, wildlife habitats, land use change, and the application of <strong>QGIS and ArcGIS</strong> for spatial mapping and research support.</p>
+  </div>
+
+  <!-- Skills -->
+  <div class="card" id="skills" data-aos="fade-up">
+    <h2><i class="fas fa-cog"></i> Interests & Skills</h2>
+    <div class="skill-chip">
+      <span>Wildlife Research</span>
+      <span>Conservation Studies</span>
+      <span>QGIS</span>
+      <span>ArcGIS</span>
+      <span>Cartography</span>
+      <span>Remote Sensing</span>
+      <span>Field Survey</span>
+      <span>Habitat Studies</span>
+      <span>Wildlife Photography</span>
     </div>
+  </div>
 
-    <div class="card" id="field" data-aos="fade-up">
-        <h2><i class="fas fa-camera"></i> Fieldwork Photos</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item" onclick="openLightbox('field1.jpg')"><img src="field1.jpg" onerror="this.src='https://via.placeholder.com/400?text=Field+1'"></div>
-            <div class="gallery-item" onclick="openLightbox('field2.jpg')"><img src="field2.jpg" onerror="this.src='https://via.placeholder.com/400?text=Field+2'"></div>
-        </div>
-    </div>
-</main>
+  <!-- Field Experience -->
+  <div class="card" id="field" data-aos="fade-up">
+    <h2><i class="fas fa-tree"></i> Field Experience & Project Work</h2>
+    <ul>
+      <li>Gained experience in an International project on <strong>Tiger Monitoring and Population Estimation</strong> using <strong>acoustic measures</strong> at <strong>Orang National Park</strong> and <strong>Kaziranga National Park</strong>.</li>
+      <li>Funded by the <strong>Rufford Foundation (UK)</strong> and the <strong>University of Wisconsin–Madison (USA)</strong>.</li>
+      <li>Participated in ecological and science-based field surveys</li>
+      <li>Assisted in camera trapping support for wildlife monitoring</li>
+      <li>Supported Installation of acoustic monitoring devices</li>
+      <li>Worked on field-based data collection using KoBo Toolbox questionnaires</li>
+    </ul>
+  </div>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    // Initialize Animations
-    AOS.init({ duration: 1000, once: true });
-
-    // Navbar Scroll Effect
-    window.addEventListener('scroll', () => {
-        const nav = document.getElementById('navbar');
-        if (window.scrollY > 50) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-    });
-
-    // Lightbox Logic (Fixed)
-    const modal = document.getElementById('lightboxModal');
-    const modalImg = document.getElementById('modalImage');
-
-    function openLightbox(src) {
-        modal.style.display = "flex";
-        modalImg.src = src;
-    }
-
-    function closeLightbox() {
-        modal.style.display = "none";
-    }
-
-    // Close on click outside image
-    modal.onclick = function(e) {
-        if (e.target === modal) closeLightbox();
-    };
-</script>
-
-</body>
-</html>
+  <!-- Field Photos -->
+  <div class="card" data-aos="fade-up">
+    <h2><i class="fas fa-camera-retro"></i> Fieldwork Photos</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('field1.jpg', 'Fieldwork in Orang National Park')"><img src="field1.jpg" alt="Field" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Field+1'"></div>
+      <div class="gallery-item" onclick="openLightbox('field2.jpg', 'Camera trap setup in Kaziranga')"><img src="field2.jpg" alt="Field" loading="lazy" on
