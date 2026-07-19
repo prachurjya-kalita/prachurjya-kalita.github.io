@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -442,7 +442,33 @@ li::before {
   font-size: 1.2rem;
 }
 
-/* ===== GALLERY GRID - OPTIMIZED ===== */
+/* ===== DRIVE BUTTON (used for Fieldwork / Maps / Certificates) ===== */
+.drive-btn {
+  background: linear-gradient(135deg, #2b5a2b, #1a3f1a);
+  border: 1px solid #aed581;
+  color: white;
+  font-size: 1.05rem;
+  padding: 14px 36px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: var(--elev-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.drive-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #3a753a, #2b5a2b);
+  box-shadow: 0 24px 36px -16px #1f4a1f;
+}
+
+/* ===== GALLERY GRID (kept for potential future use) ===== */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -855,44 +881,22 @@ footer {
       <li>Supported Installation of acoustic monitoring devices.</li>
       <li>Worked on field-based data collection using KoBo Toolbox questionnaires.</li>
     </ul>
-  </div>
-
-  <!-- Field Photos -->
-  <div class="card" data-aos="fade-up">
-    <h2><i class="fas fa-camera-retro"></i> Fieldwork Photos</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('field1.jpg')"><img src="field1.jpg" alt="Fieldwork in forest terrain during wildlife survey" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+1'"></div>
-      <div class="gallery-item" onclick="openLightbox('field2.jpg')"><img src="field2.jpg" alt="Research activity in protected landscape" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+2'"></div>
-      <div class="gallery-item" onclick="openLightbox('field3.jpg')"><img src="field3.jpg" alt="Wildlife monitoring field documentation" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+3'"></div>
-      <div class="gallery-item" onclick="openLightbox('field4.jpg')"><img src="field4.jpg" alt="Survey team in natural habitat" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+4'"></div>
-      <div class="gallery-item" onclick="openLightbox('field5.jpg')"><img src="field5.jpg" alt="Forest-based ecological fieldwork" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+5'"></div>
-      <div class="gallery-item" onclick="openLightbox('field6.jpg')"><img src="field6.jpg" alt="On-ground conservation research activity" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+6'"></div>
-      <div class="gallery-item" onclick="openLightbox('field7.jpg')"><img src="field7.jpg" alt="Field data collection in wildlife landscape" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+7'"></div>
-      <div class="gallery-item" onclick="openLightbox('field8.jpg')"><img src="field8.jpg" alt="Habitat assessment field snapshot" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Field+8'"></div>
-    </div>
+    <a href="https://drive.google.com/drive/folders/1oXZMlEnA38KVx7GLC2ef7Som-fHhhrgc?usp=drive_link" target="_blank" rel="noopener noreferrer" class="drive-btn"><i class="fas fa-folder-open"></i> View Fieldwork Photos on Drive</a>
   </div>
 
   <!-- Maps -->
   <div class="card" id="maps" data-aos="fade-up">
     <h2><i class="fas fa-map"></i> Maps & GIS Work</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('map1.jpg')"><img src="map1.jpg" alt="GIS map project 1 showing spatial analysis output" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+1'"></div>
-      <div class="gallery-item" onclick="openLightbox('map2.jpg')"><img src="map2.jpg" alt="GIS map project 2 with thematic cartography" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+2'"></div>
-      <div class="gallery-item" onclick="openLightbox('map3.jpg')"><img src="map3.jpg" alt="Remote sensing and land cover interpretation map" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+3'"></div>
-      <div class="gallery-item" onclick="openLightbox('map4.jpg')"><img src="map4.jpg" alt="Wildlife habitat mapping visualization" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+4'"></div>
-      <div class="gallery-item" onclick="openLightbox('map5.jpg')"><img src="map5.jpg" alt="Cartographic output for environmental analysis" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Map+5'"></div>
-    </div>
+    <p>A collection of GIS maps, cartographic outputs, and spatial analysis work created using QGIS and ArcGIS.</p>
+    <a href="https://drive.google.com/drive/folders/1OYTKyViHhyXD-jxKCD3ncjkPqFYxES-M?usp=drive_link" target="_blank" rel="noopener noreferrer" class="drive-btn"><i class="fas fa-folder-open"></i> View Maps & GIS Work on Drive</a>
+    <a href="https://drive.google.com/drive/folders/1so1dFXGgpMH6sloQ0UCT1qJ90LFiWPzX?usp=drive_link" target="_blank" rel="noopener noreferrer" class="drive-btn"><i class="fas fa-file-alt"></i> View Research Articles on Drive</a>
   </div>
 
   <!-- Certificates -->
   <div class="card" id="certificates" data-aos="fade-up">
     <h2><i class="fas fa-certificate"></i> Certificates</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('cert1.jpg')"><img src="cert1.jpg" alt="Certificate in geography or GIS learning" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Cert+1'"></div>
-      <div class="gallery-item" onclick="openLightbox('cert2.jpg')"><img src="cert2.jpg" alt="Certificate of fieldwork or research participation" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Cert+2'"></div>
-      <div class="gallery-item" onclick="openLightbox('cert3.jpg')"><img src="cert3.jpg" alt="Certification related to conservation studies" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Cert+3'"></div>
-      <div class="gallery-item" onclick="openLightbox('cert4.jpg')"><img src="cert4.jpg" alt="Academic achievement certificate" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400?text=Cert+4'"></div>
-    </div>
+    <p>Certificates of participation, training, and academic achievement earned so far.</p>
+    <a href="https://drive.google.com/drive/folders/11l9y8W5oUim_EnvYYFGJ7jlDEboW8P2j?usp=drive_link" target="_blank" rel="noopener noreferrer" class="drive-btn"><i class="fas fa-folder-open"></i> View Certificates on Drive</a>
   </div>
 
   <!-- Education -->
@@ -919,11 +923,11 @@ footer {
       
       <div class="social-links">
         <a href="mailto:polkalita2004@gmail.com" aria-label="Send email to polkalita2004@gmail.com" title="polkalita2004@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.facebook.com/profile.php?id=61572179049448&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a>
         <a href="https://www.linkedin.com/in/prachurjya-kalita-279bb3355" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
         <a href="https://instagram.com/prachuuz_" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
         <a href="https://x.com/Prachux_" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> X</a>
         <a href="https://linktr.ee/PrachurjyaKalita" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> Linktree</a>
-        <a href="https://drive.google.com/drive/folders/1so1dFXGgpMH6sloQ0UCT1qJ90LFiWPzX" target="_blank" rel="noopener noreferrer"><i class="fas fa-folder-open"></i> GIS Works & Research Articles</a>
       </div>
       
       <a href="cv.pdf" target="_blank" rel="noopener noreferrer" class="cv-btn"><i class="fas fa-download"></i> Download CV (PDF)</a>
@@ -1010,7 +1014,7 @@ if (sectionElements.length) {
   sectionElements.forEach((section) => sectionObserver.observe(section));
 }
 
-// Lightbox functions - OPTIMIZED
+// Lightbox functions (kept in case galleries are re-added later)
 let isLightboxOpen = false;
 let lastFocusedElement = null;
 
@@ -1067,4 +1071,3 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
-
